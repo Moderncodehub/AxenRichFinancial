@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Join the Team | Financial Services</title>
+  <meta name="description" content="Become an independent agent. Flexible schedule, mentorship, and training. Apply to join our team." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Your main CSS (keeps same site design) -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Page-only CSS (Join Team) -->
+  <style>
+    :root{
+      --navy:#0b2a55;
+      --accent:#1b66ff;
+      --bg:#ffffff;
+      --soft:#f6f9fd;
+      --text:#0f172a;
+      --muted:#5b6b7a;
+      --border:#e6edf5;
+      --shadow: 0 18px 55px rgba(10, 30, 70, 0.10);
+      --radius:18px;
+    }
+
+    /* Active nav link */
+    .navlinks a.active{
+      color: var(--navy);
+      position: relative;
+    }
+    .navlinks a.active::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-10px;
+      width:100%;
+      height:3px;
+      border-radius:999px;
+      background: var(--navy);
+    }
+
+    /* HERO */
+    .page-hero{
+      padding:34px 0 22px;
+      background:
+        radial-gradient(900px 280px at 15% 10%, rgba(27,102,255,.10), transparent 60%),
+        radial-gradient(900px 280px at 85% 20%, rgba(11,42,85,.10), transparent 55%),
+        linear-gradient(180deg, #f7fbff 0%, #ffffff 70%);
+      border-bottom:1px solid var(--border);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .hero-card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:22px;
+      box-shadow:0 24px 65px rgba(11,42,85,0.12);
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .pill{
+      display:inline-flex;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:13px;
+      color:var(--navy);
+      background:#fff;
+      border:1px solid var(--border);
+    }
+    .hero-title{
+      margin:12px 0 8px;
+      font-size:42px;
+      line-height:1.05;
+      letter-spacing:-0.02em;
+      color:var(--navy);
+    }
+    .hero-accent{color:var(--accent)}
+    .hero-sub{margin:0;color:var(--muted);line-height:1.5;max-width:60ch}
+
+    .hero-kpis{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+    .kpi{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:12px;
+      background:#fbfdff;
+    }
+    .kpi strong{display:block;color:var(--navy);font-size:16px}
+    .kpi span{color:var(--muted);font-size:12px;font-weight:800}
+
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+    /* LEFT HERO UPGRADE */
+    .hero-card-left::before{
+      content:"";
+      position:absolute;
+      inset:-80px -120px auto auto;
+      width:320px;height:320px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(27,102,255,.18), transparent 60%),
+        radial-gradient(circle at 60% 60%, rgba(11,42,85,.12), transparent 65%);
+      filter: blur(2px);
+      pointer-events:none;
+    }
+
+    .hero-bullets{
+      margin-top:14px;
+      display:grid;
+      gap:10px;
+    }
+
+    .hb{
+      display:grid;
+      grid-template-columns: 14px 1fr;
+      gap:10px;
+      align-items:start;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background: #fbfdff;
+    }
+
+    .hb .dot{
+      width:10px;height:10px;
+      border-radius:999px;
+      background: var(--navy);
+      margin-top:6px;
+      box-shadow: 0 0 0 4px rgba(11,42,85,.08);
+    }
+
+    .hb strong{
+      display:block;
+      font-size:13px;
+      color:var(--navy);
+      font-weight:900;
+    }
+
+    .hb p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .hero-note{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 12px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background: #f7fbff;
+    }
+
+    .note-ico{
+      width:24px;height:24px;
+      border-radius:8px;
+      display:grid;place-items:center;
+      background: #eaf2ff;
+      color: var(--navy);
+      font-weight:900;
+      border:1px solid #d6e6ff;
+      flex:0 0 auto;
+    }
+
+    .hero-note p{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    /* sections */
+    .section{padding:60px 0}
+    .section.alt{background:var(--soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .section-head{margin-bottom:18px}
+    .section-head h2{margin:0;color:var(--navy);font-size:30px;letter-spacing:-0.02em}
+    .section-head p{margin:8px 0 0;color:var(--muted);max-width:80ch;line-height:1.5}
+
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    .cardx{
+      background:#fff;border:1px solid var(--border);
+      border-radius:var(--radius);padding:16px;
+      box-shadow:0 10px 22px rgba(11,42,85,0.06);
+    }
+    .cardx h3{margin:0 0 6px;color:var(--navy)}
+    .cardx p{margin:0;color:var(--muted);line-height:1.45}
+    .icon{
+      width:42px;height:42px;border-radius:14px;
+      background:linear-gradient(135deg,var(--navy),var(--accent));
+      display:grid;place-items:center;color:#fff;font-weight:900;
+      margin-bottom:10px;
+    }
+
+    .steps{display:grid;gap:10px}
+    .step{
+      display:grid;
+      grid-template-columns: 38px 1fr;
+      gap:12px;
+      align-items:start;
+      padding:14px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:0 10px 22px rgba(11,42,85,0.06);
+    }
+    .step .num{
+      width:38px;height:38px;border-radius:14px;
+      background:var(--navy);color:#fff;
+      display:grid;place-items:center;
+      font-weight:900;
+    }
+    .step strong{display:block;color:var(--navy)}
+    .step p{margin:6px 0 0;color:var(--muted);line-height:1.45}
+
+    /* form */
+    .formx .field{display:grid;gap:6px;margin:10px 0}
+    .formx label{font-weight:900;font-size:12px;color:#243b53}
+    .formx input,.formx select,.formx textarea{
+      height:46px;border-radius:12px;border:1px solid #dbe6f3;
+      padding:0 12px;font-weight:800;outline:none;background:#fff;
+    }
+    .formx textarea{height:auto;min-height:110px;padding:12px}
+    .formx input:focus,.formx select:focus,.formx textarea:focus{
+      border-color:#9bbcff;box-shadow:0 0 0 4px rgba(27,102,255,0.14);
+    }
+
+    .fineprint{color:var(--muted);font-size:12px;line-height:1.4;margin-top:8px}
+
+    .faq details{
+      background:#fff;border:1px solid var(--border);
+      border-radius:16px;padding:14px;margin:10px 0;
+      box-shadow:0 10px 22px rgba(11,42,85,0.05);
+    }
+    .faq summary{cursor:pointer;font-weight:900;color:var(--navy)}
+    .faq p{color:var(--muted);line-height:1.5;margin:10px 0 0}
+
+    /* responsive */
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
+      .hero-title{font-size:34px}
+      .hero-kpis{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <!-- TOP BAR (FULL WIDTH) -->
+<div class="topbar topbar-premium">
+  <div class="topbar-wrap">
+
+    <!-- LEFT -->
+    <div class="topbar-left">
+      <span class="tb-chip">
+        <i class="fa-solid fa-phone"></i>
+        <a href="tel:+12176071382">217-607-1382</a>
+      </span>
+
+      <span class="tb-dot"></span>
+
+      <span class="tb-chip">
+        <i class="fa-solid fa-envelope"></i>
+        <a href="mailto:Axenrich@gmail.com">Axenrich@gmail.com</a>
+      </span>
+
+      <span class="tb-dot"></span>
+
+      <span class="tb-chip">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Urbana, IL</span>
+      </span>
+    </div>
+
+    <!-- CENTER -->
+    <div class="topbar-ticker" aria-label="Highlights">
+      <div class="ticker-fade left"></div>
+
+      <div class="ticker-window">
+        <div class="ticker-track" id="topTicker">
+          <span><i class="fa-solid fa-circle-check"></i> Term Life — Affordable Family Protection</span>
+          <span><i class="fa-solid fa-circle-check"></i> IUL — Lifetime Coverage + Cash Value Potential</span>
+          <span><i class="fa-solid fa-circle-check"></i> Whole Life — Guaranteed Protection</span>
+          <span><i class="fa-solid fa-circle-check"></i> Final Expense — Peace of Mind Coverage</span>
+          <span><i class="fa-solid fa-circle-check"></i> Retirement & Annuities Planning</span>
+          <span><i class="fa-solid fa-circle-check"></i> Debt Solutions & Financial Planning</span>
+
+          <!-- duplicate for seamless loop -->
+          <span><i class="fa-solid fa-circle-check"></i> Term Life — Affordable Family Protection</span>
+          <span><i class="fa-solid fa-circle-check"></i> IUL — Lifetime Coverage + Cash Value Potential</span>
+          <span><i class="fa-solid fa-circle-check"></i> Whole Life — Guaranteed Protection</span>
+          <span><i class="fa-solid fa-circle-check"></i> Final Expense — Peace of Mind Coverage</span>
+          <span><i class="fa-solid fa-circle-check"></i> Retirement & Annuities Planning</span>
+          <span><i class="fa-solid fa-circle-check"></i> Debt Solutions & Financial Planning</span>
+        </div>
+      </div>
+
+      <div class="ticker-fade right"></div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="topbar-right">
+      <div class="top-social">
+        <a href="#" class="sicon fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="sicon ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="sicon wa" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="sicon sc" aria-label="Snapchat"><i class="fa-brands fa-snapchat-ghost"></i></a>
+        <a href="#" class="sicon li" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- NAV (KEEP) -->
+  <header class="header" id="header">
+    <div class="container nav">
+ 
+<a class="brand" href="index.html">
+  <div class="logo-wrap">
+    <img src="assets/img/logo.png" alt="Axenrich Financial Services" class="logo-img">
+  </div>
+
+  <div class="brand-text">
+    <strong>Axenrich Financial Services</strong>
+    <span>Protection • Growth • Confidence</span>
+  </div>
+</a>
+
+
+      <nav class="navlinks" id="navlinks">
+        <a   href="index.html">Home</a>
+
+        <div class="nav-dropdown">
+          <button class="nav-dropbtn" type="button">Products ▾</button>
+          <div class="nav-dropmenu">
+            <a href="term-life.html">Term Life</a>
+            <a href="iul.html">IUL</a>
+            <a href="whole-life.html">Whole Life</a>
+            <a href="final-expense.html">Final Expense</a>
+          </div>
+        </div>
+
+        <a href="life-calculator.html">Life Calculator</a>
+        <a href="#planning">Planning</a>
+        <a href="#opportunity">Opportunity</a>
+        <a class="active" href="join-team.html">Join a Team</a>
+        <a href="contact.html">Contact</a>
+
+            <a class="get" href="#quote"><i class="fa-solid fa-bolt"></i>&nbsp; Get Free Quote</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="#products">Products</a>
+      <a href="life-calculator.html">Life Calculator</a>
+      <a href="#planning">Planning</a>
+      <a href="#opportunity">Opportunity</a>
+      <a href="join-team.html">Join a Team</a>
+      <a href="contact.html">Contact</a>
+            <a class="btn btn-primary" href="#quote"><i class="fa-solid fa-bolt"></i>&nbsp; Get Free Quote</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- LEFT HERO -->
+        <div class="hero-card hero-card-left">
+          <span class="pill">Opportunity • Training • Mentorship</span>
+
+          <h1 class="hero-title">
+            Join Our Team.<br>
+            <span class="hero-accent">Grow Your Career.</span>
+          </h1>
+
+          <p class="hero-sub">
+            Become an independent agent with a flexible schedule, structured training, and real mentorship.
+            Start part-time or full-time — we’ll help you build confidence and skills step-by-step.
+          </p>
+
+          <div class="hero-bullets">
+            <div class="hb">
+              <span class="dot"></span>
+              <div>
+                <strong>Clear Path</strong>
+                <p>Simple onboarding + weekly training to get you started fast.</p>
+              </div>
+            </div>
+
+            <div class="hb">
+              <span class="dot"></span>
+              <div>
+                <strong>Mentorship Support</strong>
+                <p>Coaching, scripts, and guidance when you need help.</p>
+              </div>
+            </div>
+
+            <div class="hb">
+              <span class="dot"></span>
+              <div>
+                <strong>Growth Opportunity</strong>
+                <p>Commission-based income potential with flexible effort.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-kpis">
+            <div class="kpi"><strong>Flexible</strong><span>Part-time / Full-time</span></div>
+            <div class="kpi"><strong>Support</strong><span>Mentorship + weekly training</span></div>
+            <div class="kpi"><strong>Growth</strong><span>Commission-based opportunity</span></div>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#apply">Apply Now</a>
+            <a class="btn btn-outline" href="#how">How It Works</a>
+          </div>
+
+          <div class="hero-note">
+            <span class="note-ico">i</span>
+            <p>Licensing requirements vary by state and product type. This page is informational and not a guarantee of income.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT FORM -->
+        <div class="hero-card" id="apply">
+          <div class="section-head" style="margin-bottom:10px">
+            <h2 style="font-size:22px;margin:0;color:var(--navy)">Quick Application</h2>
+            <p style="margin:8px 0 0;color:var(--muted)">Tell us about you — we’ll reach out with next steps.</p>
+          </div>
+
+          <form class="formx" id="joinForm">
+            <div class="grid2">
+              <div class="field">
+                <label>First Name</label>
+                <input required type="text" name="firstName" placeholder="John" />
+              </div>
+              <div class="field">
+                <label>Last Name</label>
+                <input required type="text" name="lastName" placeholder="Doe" />
+              </div>
+            </div>
+
+            <div class="grid2">
+              <div class="field">
+                <label>Phone</label>
+                <input required type="tel" name="phone" placeholder="217-xxx-xxxx" />
+              </div>
+              <div class="field">
+                <label>Email</label>
+                <input required type="email" name="email" placeholder="you@email.com" />
+              </div>
+            </div>
+
+            <div class="grid2">
+              <div class="field">
+                <label>State</label>
+                <input required type="text" name="state" placeholder="Illinois" />
+              </div>
+              <div class="field">
+                <label>Availability</label>
+                <select name="availability" required>
+                  <option value="" selected disabled>Select</option>
+                  <option>Part-time</option>
+                  <option>Full-time</option>
+                  <option>Both / Flexible</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid2">
+              <div class="field">
+                <label>Are you licensed?</label>
+                <select name="licensed" required>
+                  <option value="" selected disabled>Select</option>
+                  <option>Yes, licensed</option>
+                  <option>No, not yet</option>
+                  <option>In progress</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Interest Area</label>
+                <select name="focus" required>
+                  <option value="" selected disabled>Select</option>
+                  <option>Life Insurance</option>
+                  <option>IUL / Cash Value Planning</option>
+                  <option>Final Expense</option>
+                  <option>Retirement / Annuities</option>
+                  <option>All of the above</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Message (optional)</label>
+              <textarea name="message" placeholder="Tell us why you want to join, your background, or your goals..."></textarea>
+            </div>
+
+            <button class="btn btn-primary w100" type="submit">Submit Application</button>
+            <div class="fineprint">We’ll contact you within business hours. No spam.</div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY JOIN -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Why Join Our Team?</h2>
+        <p>We keep it simple: training + mentorship + clear process so you can grow with confidence.</p>
+      </div>
+
+      <div class="grid3">
+        <div class="cardx">
+          <div class="icon">🎓</div>
+          <h3>Free Training</h3>
+          <p>Product basics, sales workflow, compliance guidance, and real examples to learn faster.</p>
+        </div>
+        <div class="cardx">
+          <div class="icon">🤝</div>
+          <h3>Mentorship</h3>
+          <p>Weekly check-ins, Q&A, and support to help you improve step-by-step.</p>
+        </div>
+        <div class="cardx">
+          <div class="icon">🕒</div>
+          <h3>Flexible Schedule</h3>
+          <p>Start part-time while you learn, then grow into full-time if you want.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section alt" id="how">
+    <div class="container">
+      <div class="section-head">
+        <h2>How It Works</h2>
+        <p>A clear step-by-step path — no confusion.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <strong>Apply</strong>
+            <p>Submit your info and availability. We’ll schedule a quick intro call.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <strong>Training + Setup</strong>
+            <p>Learn products, scripts, and process. If not licensed, we guide you on next steps.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <strong>Mentorship + Growth</strong>
+            <p>Weekly webinars, coaching, and support to help you build real momentum.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUIREMENTS + FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="grid2">
+        <div class="cardx">
+          <h3 style="margin:0 0 8px;color:var(--navy)">Requirements</h3>
+          <p class="muted" style="margin:0 0 10px">Basic expectations to be successful.</p>
+          <ul style="margin:0;color:#4a5a6d;padding-left:18px">
+            <li>Professional communication</li>
+            <li>Willingness to learn + follow compliance</li>
+            <li>Consistent weekly effort</li>
+            <li>State licensing required (we guide you)</li>
+          </ul>
+          <div class="fineprint">Licensing requirements vary by state and product type.</div>
+        </div>
+
+        <div class="cardx">
+          <h3 style="margin:0 0 8px;color:var(--navy)">FAQ</h3>
+          <div class="faq">
+            <details>
+              <summary>Do I need to be licensed before applying?</summary>
+              <p>No. You can apply now. If you’re not licensed, we’ll guide you on the steps.</p>
+            </details>
+            <details>
+              <summary>Is this part-time or full-time?</summary>
+              <p>Either. Many people start part-time and scale based on their schedule.</p>
+            </details>
+            <details>
+              <summary>Do you provide leads?</summary>
+              <p>We focus on training, mentorship, and systems. Lead strategy may vary by role and program.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ================= MODERN FOOTER ================= -->
+ <!-- Font Awesome (for social icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<!-- ✅ PREMIUM FOOTER v2 (Axenrich Financial Services) -->
+<footer class="fx-footer" id="site-footer">
+  <!-- top glow + wave -->
+  <div class="fx-wave" aria-hidden="true"></div>
+
+  <div class="container fx-footer-inner">
+    <!-- LEFT: BRAND -->
+    <div class="fx-col fx-brand">
+      <div class="fx-brandRow">
+        <div class="fx-logoWrap">
+          <!-- use your logo path -->
+          <img src="assets/img/logo.png" alt="Axenrich Financial Services" class="fx-logo">
+        </div>
+        <div class="fx-brandText">
+          <h3>Axenrich Financial Services</h3>
+          <p class="fx-tag">Protection • Growth • Confidence</p>
+        </div>
+      </div>
+
+      <p class="fx-desc">
+        Helping families and businesses with life insurance, protection, and financial planning.
+        Clear guidance, simple steps, and support you can trust.
+      </p>
+
+      <div class="fx-badges">
+        <span><i class="fa-solid fa-bolt"></i> Fast Response</span>
+        <span><i class="fa-solid fa-shield-heart"></i> Trusted Guidance</span>
+        <span><i class="fa-solid fa-location-dot"></i> Illinois Office</span>
+      </div>
+
+      <div class="fx-follow">
+        <div class="fx-followTitle">Follow</div>
+        <div class="fx-social">
+          <a class="fx-ic fb" href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a class="fx-ic ig" href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="fx-ic wa" href="#" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a class="fx-ic sc" href="#" aria-label="Snapchat" title="Snapchat"><i class="fa-brands fa-snapchat-ghost"></i></a>
+          <a class="fx-ic li" href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MIDDLE: LINKS -->
+    <div class="fx-col fx-links">
+      <h4 class="fx-h">Quick Links</h4>
+      <div class="fx-linkGrid">
+        <a href="index.html">Home</a>
+        <a href="life-calculator.html">Life Calculator</a>
+        <a href="join-team.html">Join Team</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <h4 class="fx-h" style="margin-top:18px;">Products</h4>
+
+      <!-- dropdown-like list (no JS needed) -->
+      <details class="fx-products">
+        <summary>
+          Browse Products
+          <i class="fa-solid fa-chevron-down"></i>
+        </summary>
+        <div class="fx-prodList">
+          <a href="term-life.html">Term Life</a>
+          <a href="iul.html">IUL</a>
+          <a href="whole-life.html">Whole Life</a>
+          <a href="final-expense.html">Final Expense</a>
+        </div>
+      </details>
+
+      <div class="fx-miniLinks">
+        <a href="privacy.html">Privacy</a>
+        <span>•</span>
+        <a href="terms.html">Terms</a>
+        <span>•</span>
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+
+    <!-- RIGHT: CONTACT -->
+    <div class="fx-col fx-contact">
+      <h4 class="fx-h">Contact</h4>
+
+      <a class="fx-card" href="tel:+12176071382">
+        <div class="fx-ci phone"><i class="fa-solid fa-phone"></i></div>
+        <div class="fx-ct">
+          <div class="fx-ctLabel">Phone</div>
+          <div class="fx-ctValue">217-607-1382</div>
+        </div>
+        <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+
+      <a class="fx-card" href="mailto:Axenrich@gmail.com">
+        <div class="fx-ci email"><i class="fa-solid fa-envelope"></i></div>
+        <div class="fx-ct">
+          <div class="fx-ctLabel">Email</div>
+          <div class="fx-ctValue">Axenrich@gmail.com</div>
+        </div>
+        <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+
+      <a class="fx-card" target="_blank" rel="noopener"
+         href="https://www.google.com/maps?q=2860%20South%20Philo%20RD%20Urbana%20IL%2061802">
+        <div class="fx-ci addr"><i class="fa-solid fa-location-dot"></i></div>
+        <div class="fx-ct">
+          <div class="fx-ctLabel">Office</div>
+          <div class="fx-ctValue">2860 South Philo Rd<br>Urbana, IL 61802</div>
+        </div>
+        <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      </a>
+
+      <div class="fx-card fx-hours">
+        <div class="fx-ci hours"><i class="fa-solid fa-clock"></i></div>
+        <div class="fx-ct">
+          <div class="fx-ctLabel">Hours</div>
+          <div class="fx-ctValue">
+            Mon–Fri: 8:00 AM – 5:00 PM<br>
+            Weekends: By appointment only
+          </div>
+        </div>
+      </div>
+
+      <div class="fx-ctaRow">
+        <a class="fx-btn fx-btnPrimary" href="contact.html#message">
+          <i class="fa-solid fa-paper-plane"></i> Send Message
+        </a>
+        <a class="fx-btn fx-btnGhost" href="index.html#quote">
+          <i class="fa-solid fa-bolt"></i> Get Free Quote
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- bottom bar -->
+  <div class="fx-bottom">
+    <div class="container fx-bottomInner">
+      <div>© <span id="fxYear"></span> Axenrich Financial Services. All rights reserved.</div>
+      <div class="fx-made">
+        Website made by <a href="#" target="_blank" rel="noopener">Modern Code Hub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Submit demo
+    document.getElementById("joinForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Thank you! Your application was submitted. We will contact you soon.");
+      e.target.reset();
+    });
+
+    // Mobile menu toggle (if your main JS isn't loaded on this page)
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    if(hamburger && mobileMenu){
+      hamburger.addEventListener("click", () => {
+        mobileMenu.classList.toggle("show");
+      });
+    }
+  </script>
+</body>
+</html>

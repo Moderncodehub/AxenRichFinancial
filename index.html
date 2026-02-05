@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Axenrich Financial Services | Insurance • Retirement • Debt Solutions</title>
+  <meta name="description" content="Term Life, IUL, Whole Life, Final Expense, Annuities, Estate Documents, Credit Card Debt Solutions. Book a free consultation today." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Page-only modern layout (keeps your topbar/nav/footer intact) -->
+  <style>
+    :root{
+      --navy:#0b2a55;
+      --accent:#1b66ff;
+      --border:#e6edf5;
+      --muted:#5b6b7a;
+      --soft:#f6f9fd;
+      --shadow: 0 18px 55px rgba(10, 30, 70, 0.12);
+      --radius:22px;
+    }
+    .btn{ text-decoration:none; }
+    .section{ padding:70px 0; }
+    .section.alt{ background:var(--soft); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .section-head{ margin-bottom:18px; }
+    .section-head h2{ margin:0; color:var(--navy); letter-spacing:-0.02em; }
+    .section-head p{ margin:8px 0 0; color:var(--muted); max-width:80ch; line-height:1.5; font-weight:700; }
+
+    /* HERO (premium) */
+    .heroX{
+      position:relative;
+      min-height:86vh;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      border-bottom:1px solid var(--border);
+      background: radial-gradient(900px 320px at 20% 10%, rgba(27,102,255,.18), transparent 60%),
+                  radial-gradient(900px 320px at 80% 15%, rgba(11,42,85,.20), transparent 60%),
+                  linear-gradient(180deg, #f7fbff 0%, #ffffff 70%);
+    }
+    .heroX .media{
+      position:absolute; inset:0;
+      z-index:0;
+    }
+    /* IMPORTANT: #heroImage must have height - fixed here */
+    #heroImage.heroImg{
+      position:absolute; inset:0;
+      background-size:cover;
+      background-position:center;
+      filter:saturate(1.05) contrast(1.05);
+      transform:scale(1.02);
+    }
+    .heroOverlay{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(11,42,85,.75) 0%, rgba(11,42,85,.45) 45%, rgba(11,42,85,.10) 75%, rgba(255,255,255,0) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 55%);
+    }
+    .heroInner{ position:relative; z-index:2; padding:26px 0; }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .heroCard{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      padding:20px;
+      color:#fff;
+    }
+    .heroBadge{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      font-weight:900;
+      font-size:13px;
+    }
+    .heroTitle{
+      margin:12px 0 8px;
+      font-size:46px;
+      line-height:1.04;
+      letter-spacing:-0.02em;
+    }
+    .heroTitle span{
+      color:#bcd6ff;
+    }
+    .heroLead{
+      margin:0;
+      max-width:65ch;
+      color: rgba(255,255,255,.90);
+      line-height:1.55;
+      font-weight:700;
+    }
+    .heroActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+    .heroKpis{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:16px;
+    }
+    .kpiX{
+      padding:12px;
+      border-radius:18px;
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+    }
+    .kpiX strong{ display:block; font-size:16px; }
+    .kpiX span{ display:block; margin-top:2px; opacity:.92; font-weight:800; font-size:12px; }
+
+    /* Right card form */
+    .heroFormCard{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:26px;
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    .heroFormCard h3{ margin:0 0 6px; color:var(--navy); }
+    .heroFormCard p{ margin:0; color:var(--muted); font-weight:700; line-height:1.45; }
+    .formX{ margin-top:12px; display:grid; gap:10px; }
+    .row2{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .fieldX label{ font-size:12px; font-weight:900; color:#243b53; }
+    .fieldX input,.fieldX select{
+      width:100%;
+      height:46px;
+      border-radius:14px;
+      border:1px solid #dbe6f3;
+      padding:0 12px;
+      font-weight:800;
+      outline:none;
+      background:#fff;
+    }
+    .fieldX input:focus,.fieldX select:focus{
+      border-color:#9bbcff;
+      box-shadow:0 0 0 4px rgba(27,102,255,0.14);
+    }
+    .fineprint{ color:var(--muted); font-size:12px; line-height:1.4; font-weight:700; }
+    .heroDots{
+      display:flex; gap:10px; justify-content:center;
+      margin-top:12px;
+    }
+    .heroDots .dot{
+      width:10px;height:10px;border-radius:999px;
+      border:0;
+      background:#d9e6ff;
+      opacity:.55;
+      cursor:pointer;
+    }
+    .heroDots .dot.active{ opacity:1; background: var(--accent); }
+
+    /* TRUST STRIP */
+    .trustStrip{
+      margin-top:-26px;
+      position:relative;
+      z-index:3;
+    }
+    .trustBar{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:22px;
+      box-shadow: 0 14px 40px rgba(11,42,85,0.10);
+      padding:14px;
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap:12px;
+      align-items:center;
+    }
+    .trustMain{
+      display:flex; gap:12px; align-items:center;
+    }
+    .seal{
+      width:52px;height:52px;border-radius:18px;
+      background:linear-gradient(135deg,var(--navy),var(--accent));
+      display:grid;place-items:center;
+      color:#fff;font-size:20px;
+      box-shadow: 0 16px 30px rgba(27,102,255,0.18);
+    }
+    .trustMain strong{ display:block; color:var(--navy); }
+    .trustMain span{ color:var(--muted); font-weight:800; font-size:13px; }
+    .trustItem{
+      border-left:1px solid var(--border);
+      padding-left:12px;
+    }
+    .trustItem strong{ color:var(--navy); display:block; }
+    .trustItem span{ color:var(--muted); font-weight:800; font-size:13px; }
+
+    /* PRODUCT GRID (modern cards) */
+    .prodGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    .prodCard{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 12px 28px rgba(11,42,85,0.06);
+      position:relative;
+      overflow:hidden;
+    }
+    .prodTop{
+      display:flex; align-items:center; justify-content:space-between;
+      margin-bottom:10px;
+    }
+    .prodIcon{
+      width:46px;height:46px;border-radius:16px;
+      display:grid;place-items:center;
+      background: rgba(27,102,255,0.10);
+      color: var(--navy);
+      font-size:18px;
+      border:1px solid rgba(27,102,255,0.18);
+    }
+    .pillTag{
+      font-size:12px;
+      font-weight:900;
+      color: var(--navy);
+      background:#fbfdff;
+      border:1px solid var(--border);
+      padding:6px 10px;
+      border-radius:999px;
+    }
+    .prodCard h3{ margin:0 0 6px; color:var(--navy); }
+    .prodCard p{ margin:0; color:var(--muted); font-weight:700; line-height:1.5; }
+    .prodList{ margin:10px 0 0; padding-left:18px; color:#4a5a6d; font-weight:800; }
+    .prodList li{ margin:6px 0; }
+    .prodLink{
+      display:inline-flex; align-items:center; gap:8px;
+      margin-top:12px;
+      font-weight:900;
+      color: var(--accent);
+    }
+
+    /* ABOUT split with image */
+    .aboutGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      align-items:stretch;
+      margin-top:18px;
+    }
+    .aboutCard{
+      background:#fff;border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 14px 40px rgba(11,42,85,0.08);
+      padding:18px;
+    }
+    .aboutImg{
+      border-radius: var(--radius);
+      border:1px solid var(--border);
+      overflow:hidden;
+      box-shadow: 0 14px 40px rgba(11,42,85,0.10);
+      min-height: 320px;
+    }
+    .aboutImg img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* PLAN BANNER */
+    .planBanner{
+      background:
+        linear-gradient(135deg, rgba(11,42,85,.92), rgba(27,102,255,.76)),
+        url("https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1800&q=70");
+      background-size:cover;
+      background-position:center;
+      border-radius: 28px;
+      padding:18px;
+      border:1px solid rgba(255,255,255,.18);
+      color:#fff;
+      box-shadow: var(--shadow);
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:12px;
+      align-items:center;
+      margin-top:18px;
+      overflow:hidden;
+    }
+    .planBanner h3{ margin:0 0 6px; }
+    .planBanner p{ margin:0; opacity:.92; font-weight:700; line-height:1.5; }
+    .planBullets{
+      display:grid; gap:10px;
+    }
+    .pb{
+      display:flex; gap:10px; align-items:flex-start;
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius: 18px;
+      padding:12px;
+    }
+    .pb i{ margin-top:2px; }
+    .pb strong{ display:block; }
+    .pb span{ display:block; opacity:.92; font-weight:700; font-size:13px; margin-top:2px; }
+
+    /* TESTIMONIALS */
+    .testGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .testCard{
+      background:#fff;border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: 0 12px 28px rgba(11,42,85,0.06);
+    }
+    .stars{ color:#f6b500; letter-spacing:2px; font-size:14px; }
+    .testCard p{ margin:10px 0 0; color:var(--muted); font-weight:700; line-height:1.55; }
+    .testCard strong{ display:block; margin-top:10px; color:var(--navy); }
+
+    /* CTA */
+    .ctaBar{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: 28px;
+      padding:18px;
+      box-shadow: 0 14px 40px rgba(11,42,85,0.08);
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:12px;
+      align-items:center;
+    }
+    .ctaBar h3{ margin:0; color:var(--navy); }
+    .ctaBar p{ margin:8px 0 0; color:var(--muted); font-weight:700; line-height:1.5; }
+
+    /* Responsive */
+    @media(max-width: 980px){
+      .heroGrid{ grid-template-columns:1fr; }
+      .heroTitle{ font-size:36px; }
+      .heroKpis{ grid-template-columns: 1fr; }
+      .row2{ grid-template-columns:1fr; }
+      .trustBar{ grid-template-columns: 1fr; }
+      .trustItem{ border-left:0; padding-left:0; border-top:1px solid var(--border); padding-top:12px; }
+      .prodGrid{ grid-template-columns:1fr; }
+      .aboutGrid{ grid-template-columns:1fr; }
+      .planBanner{ grid-template-columns:1fr; }
+      .testGrid{ grid-template-columns:1fr; }
+      .ctaBar{ grid-template-columns:1fr; }
+    }
+
+        .navlinks a.active{
+      color: var(--navy);
+      position: relative;
+    }
+    .navlinks a.active::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-10px;
+      width:100%;
+      height:3px;
+      border-radius:999px;
+      background: var(--navy);
+    }
+  </style>
+</head>
+
+<body>
+ <!-- TOP BAR (FULL WIDTH) -->
+<div class="topbar topbar-premium">
+  <div class="topbar-wrap">
+
+    <!-- LEFT -->
+    <div class="topbar-left">
+      <span class="tb-chip">
+        <i class="fa-solid fa-phone"></i>
+        <a href="tel:+12176071382">217-607-1382</a>
+      </span>
+
+      <span class="tb-dot"></span>
+
+      <span class="tb-chip">
+        <i class="fa-solid fa-envelope"></i>
+        <a href="mailto:Axenrich@gmail.com">Axenrich@gmail.com</a>
+      </span>
+
+      <span class="tb-dot"></span>
+
+      <span class="tb-chip">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Urbana, IL</span>
+      </span>
+    </div>
+
+    <!-- CENTER -->
+    <div class="topbar-ticker" aria-label="Highlights">
+      <div class="ticker-fade left"></div>
+
+      <div class="ticker-window">
+        <div class="ticker-track" id="topTicker">
+          <span><i class="fa-solid fa-circle-check"></i> Term Life — Affordable Family Protection</span>
+          <span><i class="fa-solid fa-circle-check"></i> IUL — Lifetime Coverage + Cash Value Potential</span>
+          <span><i class="fa-solid fa-circle-check"></i> Whole Life — Guaranteed Protection</span>
+          <span><i class="fa-solid fa-circle-check"></i> Final Expense — Peace of Mind Coverage</span>
+          <span><i class="fa-solid fa-circle-check"></i> Retirement & Annuities Planning</span>
+          <span><i class="fa-solid fa-circle-check"></i> Debt Solutions & Financial Planning</span>
+
+          <!-- duplicate for seamless loop -->
+          <span><i class="fa-solid fa-circle-check"></i> Term Life — Affordable Family Protection</span>
+          <span><i class="fa-solid fa-circle-check"></i> IUL — Lifetime Coverage + Cash Value Potential</span>
+          <span><i class="fa-solid fa-circle-check"></i> Whole Life — Guaranteed Protection</span>
+          <span><i class="fa-solid fa-circle-check"></i> Final Expense — Peace of Mind Coverage</span>
+          <span><i class="fa-solid fa-circle-check"></i> Retirement & Annuities Planning</span>
+          <span><i class="fa-solid fa-circle-check"></i> Debt Solutions & Financial Planning</span>
+        </div>
+      </div>
+
+      <div class="ticker-fade right"></div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="topbar-right">
+      <div class="top-social">
+        <a href="#" class="sicon fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" class="sicon ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="sicon wa" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#" class="sicon sc" aria-label="Snapchat"><i class="fa-brands fa-snapchat-ghost"></i></a>
+        <a href="#" class="sicon li" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- NAV (KEEP) -->
+  <header class="header" id="header">
+    <div class="container nav">
+ 
+<a class="brand" href="index.html">
+  <div class="logo-wrap">
+    <img src="assets/img/logo.png" alt="Axenrich Financial Services" class="logo-img">
+  </div>
+
+  <div class="brand-text">
+    <strong>Axenrich Financial Services</strong>
+    <span>Protection • Growth • Confidence</span>
+  </div>
+</a>
+
+
+      <nav class="navlinks" id="navlinks">
+        <a class="active" href="index.html">Home</a>
+
+        <div class="nav-dropdown">
+          <button class="nav-dropbtn" type="button">Products ▾</button>
+          <div class="nav-dropmenu">
+            <a href="term-life.html">Term Life</a>
+            <a href="iul.html">IUL</a>
+            <a href="whole-life.html">Whole Life</a>
+            <a href="final-expense.html">Final Expense</a>
+          </div>
+        </div>
+
+        <a href="life-calculator.html">Life Calculator</a>
+        <a href="#planning">Planning</a>
+        <a href="#opportunity">Opportunity</a>
+        <a href="join-team.html">Join a Team</a>
+        <a href="contact.html">Contact</a>
+
+            <a class="get" href="#quote"><i class="fa-solid fa-bolt"></i>&nbsp; Get Free Quote</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="#products">Products</a>
+      <a href="life-calculator.html">Life Calculator</a>
+      <a href="#planning">Planning</a>
+      <a href="#opportunity">Opportunity</a>
+      <a href="join-team.html">Join a Team</a>
+      <a href="contact.html">Contact</a>
+            <a class="btn btn-primary" href="#quote"><i class="fa-solid fa-bolt"></i>&nbsp; Get Free Quote</a>
+    </div>
+  </header>
+
+  <!-- ✅ NEW PREMIUM HERO (replaces old layout) -->
+  <section class="heroX" id="home">
+    <div class="media" aria-hidden="true">
+      <div class="heroImg" id="heroImage"></div>
+      <div class="heroOverlay"></div>
+    </div>
+
+    <div class="container heroInner">
+      <div class="heroGrid">
+        <!-- Left: big message -->
+        <div class="heroCard">
+          <div class="heroBadge">
+            <i class="fa-solid fa-shield-heart"></i>
+            Trusted guidance • Free consultation
+          </div>
+
+          <h1 class="heroTitle">
+            Protect Your Family.<br>
+            <span>Plan Your Future.</span>
+          </h1>
+
+          <p class="heroLead">
+            We help Illinois families with life insurance, retirement strategies, estate guidance,
+            and debt solutions — with clear options and step-by-step support.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn btn-primary" href="#quote"><i class="fa-solid fa-bolt"></i>&nbsp; Get Free Quote</a>
+            <a class="btn btn-outline" href="#appointment"><i class="fa-solid fa-calendar-check"></i>&nbsp; Book Appointment</a>
+            <a class="btn btn-outline" href="life-calculator.html"><i class="fa-solid fa-calculator"></i>&nbsp; Life Calculator</a>
+          </div>
+
+          <div class="heroKpis">
+            <div class="kpiX"><strong>Fast Response</strong><span>During business hours</span></div>
+            <div class="kpiX"><strong>Clear Options</strong><span>Simple explanations</span></div>
+            <div class="kpiX"><strong>Trusted Support</strong><span>Long-term guidance</span></div>
+          </div>
+
+          <div class="heroDots">
+            <button class="dot active" data-slide="0" aria-label="Slide 1"></button>
+            <button class="dot" data-slide="1" aria-label="Slide 2"></button>
+            <button class="dot" data-slide="2" aria-label="Slide 3"></button>
+          </div>
+        </div>
+
+        <!-- Right: quick form -->
+        <div class="heroFormCard">
+          <h3>Request a Call Back</h3>
+          <p>Tell us what you need — we’ll reach out with options.</p>
+
+          <form class="formX" id="quickLead">
+            <div class="row2">
+              <div class="fieldX">
+                <label>Full Name</label>
+                <input required type="text" name="name" placeholder="Your Name">
+              </div>
+              <div class="fieldX">
+                <label>Phone</label>
+                <input required type="tel" name="phone" placeholder="217-xxx-xxxx">
+              </div>
+            </div>
+
+            <div class="fieldX">
+              <label>Interested In</label>
+              <select name="product" required>
+                <option value="" disabled selected>Select a product</option>
+                <option>Term Life Insurance</option>
+                <option>IUL – Index Universal Life</option>
+                <option>Whole Life</option>
+                <option>Final Expense</option>
+                <option>Annuities</option>
+                <option>Estate Documents</option>
+                <option>Credit Card Debt Solutions</option>
+              </select>
+            </div>
+
+            <div class="fieldX">
+              <label>Preferred Contact Time</label>
+              <select name="time" required>
+                <option>Morning</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+              </select>
+            </div>
+
+            <button class="btn btn-primary w100" type="submit">
+              <i class="fa-solid fa-paper-plane"></i>&nbsp; Submit
+            </button>
+
+            <div class="fineprint">No spam. We contact you within business hours.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust strip -->
+  <section class="trustStrip">
+    <div class="container">
+      <div class="trustBar">
+        <div class="trustMain">
+          <div class="seal"><i class="fa-solid fa-award"></i></div>
+          <div>
+            <strong>Axenrich Financial Services</strong>
+            <span>Protection • Growth • Confidence</span>
+          </div>
+        </div>
+        <div class="trustItem">
+          <strong>Office</strong>
+          <span>Urbana, IL</span>
+        </div>
+        <div class="trustItem">
+          <strong>Call</strong>
+          <span><a href="tel:+12176071382" style="color:var(--accent);font-weight:900;text-decoration:none;">217-607-1382</a></span>
+        </div>
+        <div class="trustItem">
+          <strong>Hours</strong>
+          <span>Mon–Fri 8am–5pm</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS (modern) -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-head">
+        <h2>Products & Solutions</h2>
+        <p>Choose the coverage or strategy that fits your goals — we’ll help you compare options clearly.</p>
+      </div>
+
+      <div class="prodGrid">
+        <div class="prodCard">
+          <div class="prodTop">
+            <div class="prodIcon"><i class="fa-solid fa-shield"></i></div>
+            <span class="pillTag">Most Popular</span>
+          </div>
+          <h3>Term Life Insurance</h3>
+          <p>High coverage at a lower cost for 10/20/30/35 years.</p>
+          <ul class="prodList">
+            <li>Income protection</li>
+            <li>Mortgage & debt coverage</li>
+            <li>Simple and affordable</li>
+          </ul>
+          <a class="prodLink" href="term-life.html">Explore Term Life <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="prodCard">
+          <div class="prodTop">
+            <div class="prodIcon"><i class="fa-solid fa-chart-line"></i></div>
+            <span class="pillTag">Wealth Build</span>
+          </div>
+          <h3>IUL – Index Universal Life</h3>
+          <p>Lifetime protection with cash value potential linked to an index.</p>
+          <ul class="prodList">
+            <li>Cash value strategy</li>
+            <li>Flexible planning</li>
+            <li>Long-term support</li>
+          </ul>
+          <a class="prodLink" href="iul.html">Explore IUL <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="prodCard">
+          <div class="prodTop">
+            <div class="prodIcon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+            <span class="pillTag">Guaranteed</span>
+          </div>
+          <h3>Whole Life</h3>
+          <p>Lifetime coverage with guaranteed cash value growth.</p>
+          <ul class="prodList">
+            <li>Fixed premiums</li>
+            <li>Guaranteed cash value</li>
+            <li>Legacy planning</li>
+          </ul>
+          <a class="prodLink" href="whole-life.html">Explore Whole Life <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="prodCard">
+          <div class="prodTop">
+            <div class="prodIcon"><i class="fa-solid fa-dove"></i></div>
+            <span class="pillTag">Seniors</span>
+          </div>
+          <h3>Final Expense</h3>
+          <p>Affordable coverage designed for end-of-life costs.</p>
+          <ul class="prodList">
+            <li>Simple application</li>
+            <li>Senior-friendly options</li>
+            <li>Peace of mind</li>
+          </ul>
+          <a class="prodLink" href="final-expense.html">Explore Final Expense <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="prodCard">
+          <div class="prodTop">
+            <div class="prodIcon"><i class="fa-solid fa-building-columns"></i></div>
+            <span class="pillTag">Retirement</span>
+          </div>
+          <h3>Annuities</h3>
+          <p>Income strategies focused on stability and protection.</p>
+          <ul class="prodList">
+            <li>Income planning</li>
+            <li>Protection options</li>
+            <li>Multiple plan types</li>
+          </ul>
+          <a class="prodLink" href="#appointment">Book a consult <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="prodCard">
+          <div class="prodTop">
+            <div class="prodIcon"><i class="fa-solid fa-credit-card"></i></div>
+            <span class="pillTag">Debt Help</span>
+          </div>
+          <h3>Credit Card Debt Solutions</h3>
+          <p>Practical guidance to reduce stress and organize payoff.</p>
+          <ul class="prodList">
+            <li>Consolidation guidance</li>
+            <li>Lower payment options</li>
+            <li>Payoff planning</li>
+          </ul>
+          <a class="prodLink" href="#quote">Get help <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / IMAGE -->
+  <section class="section alt" id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>Simple, Clear, and Professional Guidance</h2>
+        <p>We focus on what matters: understanding your needs and helping you choose the right option with confidence.</p>
+      </div>
+
+      <div class="aboutGrid">
+        <div class="aboutCard">
+          <h3 style="margin:0 0 8px;color:var(--navy);">What You Can Expect</h3>
+          <ul class="prodList" style="margin-top:10px;">
+            <li>Clear explanation of products and costs</li>
+            <li>Coverage recommendations based on your budget</li>
+            <li>Help comparing term vs. permanent options</li>
+            <li>Support after you enroll (reviews and updates)</li>
+          </ul>
+
+          <div class="ctaBar" style="margin-top:14px;">
+            <div>
+              <h3>Want a quick estimate?</h3>
+              <p>Use the life calculator to estimate your suggested coverage range.</p>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+              <a class="btn btn-outline" href="life-calculator.html"><i class="fa-solid fa-calculator"></i>&nbsp; Life Calculator</a>
+              <a class="btn btn-primary" href="#quote"><i class="fa-solid fa-bolt"></i>&nbsp; Get Quote</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="aboutImg">
+          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1600&q=80"
+               alt="Consultation and planning">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANNING -->
+  <section class="section" id="planning">
+    <div class="container">
+      <div class="section-head">
+        <h2>Planning & Strategy</h2>
+        <p>Protect today, plan retirement, and build a stronger financial future with a clear strategy.</p>
+      </div>
+
+      <div class="planBanner">
+        <div>
+          <h3>One Call. Clear Plan.</h3>
+          <p>
+            We review goals, income, liabilities, and coverage needs — then show options that match your timeline and budget.
+          </p>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="#appointment"><i class="fa-solid fa-calendar-check"></i>&nbsp; Book Planning Call</a>
+            <a class="btn btn-outline" href="life-calculator.html" style="background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.20); color:#fff;">
+              <i class="fa-solid fa-calculator"></i>&nbsp; Estimate Coverage
+            </a>
+          </div>
+        </div>
+
+        <div class="planBullets">
+          <div class="pb">
+            <i class="fa-solid fa-check"></i>
+            <div>
+              <strong>Financial Need Analysis</strong>
+              <span>Income, expenses, liabilities, and goals.</span>
+            </div>
+          </div>
+          <div class="pb">
+            <i class="fa-solid fa-check"></i>
+            <div>
+              <strong>Coverage Strategy</strong>
+              <span>Term vs. permanent options explained clearly.</span>
+            </div>
+          </div>
+          <div class="pb">
+            <i class="fa-solid fa-check"></i>
+            <div>
+              <strong>Retirement Support</strong>
+              <span>Planning options for long-term stability.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPPORTUNITY -->
+  <section class="section alt" id="opportunity">
+    <div class="container">
+      <div class="section-head">
+        <h2>Opportunity: Join Our Team</h2>
+        <p>Flexible schedule • training • mentorship • growth opportunity.</p>
+      </div>
+
+      <div class="ctaBar">
+        <div>
+          <h3>Start Part-Time. Grow with Mentorship.</h3>
+          <p>Become an independent agent with step-by-step training and real support.</p>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn btn-primary" href="join-team.html"><i class="fa-solid fa-user-plus"></i>&nbsp; Apply Now</a>
+            <a class="btn btn-outline" href="join-team.html#how"><i class="fa-solid fa-circle-info"></i>&nbsp; How It Works</a>
+          </div>
+          <div class="fineprint" style="margin-top:10px;">Licensing requirements vary by state and product type.</div>
+        </div>
+
+        <div class="aboutImg" style="min-height:260px;">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80"
+               alt="Team training and mentorship">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE (keep your existing form ids) -->
+  <section class="section" id="quote">
+    <div class="container">
+      <div class="section-head">
+        <h2>Get a Free Quote</h2>
+        <p>Submit your details and we’ll contact you with options.</p>
+      </div>
+
+      <div class="quote-wrap">
+        <form class="quote" id="quoteForm">
+          <div class="grid2">
+            <div class="field">
+              <label>Full Name</label>
+              <input required type="text" name="name" placeholder="Your Name" />
+            </div>
+            <div class="field">
+              <label>Phone</label>
+              <input required type="tel" name="phone" placeholder="217-xxx-xxxx" />
+            </div>
+          </div>
+
+          <div class="grid2">
+            <div class="field">
+              <label>Email</label>
+              <input required type="email" name="email" placeholder="you@email.com" />
+            </div>
+            <div class="field">
+              <label>Product</label>
+              <select name="product">
+                <option>Term Life Insurance</option>
+                <option>IUL – Index Universal Life</option>
+                <option>Whole Life</option>
+                <option>Final Expense</option>
+                <option>Annuities</option>
+                <option>Estate Documents</option>
+                <option>Credit Card Debt Solutions</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Message</label>
+            <textarea name="message" placeholder="Tell us what you're looking for..."></textarea>
+          </div>
+
+          <button class="btn btn-primary w100" type="submit">Submit</button>
+          <div class="fineprint">We respect your privacy. No spam.</div>
+        </form>
+
+        <div class="quote-side">
+          <h3>What happens next?</h3>
+          <div class="timeline">
+            <div class="t"><span></span><div><strong>We review your request</strong><p>Same day during business hours.</p></div></div>
+            <div class="t"><span></span><div><strong>Consultation call</strong><p>We understand goals and needs.</p></div></div>
+            <div class="t"><span></span><div><strong>Options & recommendations</strong><p>Clear, simple choices.</p></div></div>
+            <div class="t"><span></span><div><strong>Next steps</strong><p>Apply, schedule, or refine plan.</p></div></div>
+          </div>
+
+          <div class="legal">
+            Disclaimer: Coverage availability and rates vary by carrier and eligibility. This site is for informational purposes only.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPOINTMENT -->
+  <section class="section alt" id="appointment">
+    <div class="container">
+      <div class="section-head">
+        <h2>Book an Appointment</h2>
+        <p class="muted">Choose a time and we’ll confirm by call or email.</p>
+      </div>
+
+      <form class="appt" id="apptForm">
+        <div class="grid3">
+          <div class="field">
+            <label>Name</label>
+            <input required type="text" name="name" placeholder="Your Name" />
+          </div>
+          <div class="field">
+            <label>Date</label>
+            <input required type="date" name="date" />
+          </div>
+          <div class="field">
+            <label>Time</label>
+            <input required type="time" name="time" />
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label>Phone</label>
+            <input required type="tel" name="phone" placeholder="217-xxx-xxxx" />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input required type="email" name="email" placeholder="you@email.com" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Interested In</label>
+          <select name="product">
+            <option>Term Life Insurance</option>
+            <option>IUL – Index Universal Life</option>
+            <option>Whole Life</option>
+            <option>Final Expense</option>
+            <option>Annuities</option>
+            <option>Estate Documents</option>
+            <option>Credit Card Debt Solutions</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Request Appointment</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-head">
+        <h2>Client Feedback</h2>
+        <p>Results vary. We focus on clarity, speed, and long-term support.</p>
+      </div>
+
+      <div class="testGrid">
+        <div class="testCard">
+          <div class="stars">★★★★★</div>
+          <p>“Very professional and clear explanations. Helped me choose the right coverage.”</p>
+          <strong>— Client A</strong>
+        </div>
+        <div class="testCard">
+          <div class="stars">★★★★★</div>
+          <p>“Fast response and honest recommendations. Great experience.”</p>
+          <strong>— Client B</strong>
+        </div>
+        <div class="testCard">
+          <div class="stars">★★★★★</div>
+          <p>“Made everything easy. I feel confident about my plan now.”</p>
+          <strong>— Client C</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section alt" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <h2>FAQ</h2>
+        <p class="muted">Quick answers to common questions.</p>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Do you offer free consultations?</summary>
+          <p>Yes. We offer a free initial consultation to understand your needs and share suitable options.</p>
+        </details>
+        <details>
+          <summary>Is my information private?</summary>
+          <p>Yes. We keep your information confidential and use it only to provide services and follow up.</p>
+        </details>
+        <details>
+          <summary>How quickly will you contact me?</summary>
+          <p>Typically within the same day during business hours.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ KEEP YOUR PREMIUM FOOTER v2 EXACTLY AS YOU HAVE IT -->
+  <footer class="fx-footer" id="site-footer">
+    <div class="fx-wave" aria-hidden="true"></div>
+
+    <div class="container fx-footer-inner">
+      <div class="fx-col fx-brand">
+        <div class="fx-brandRow">
+          <div class="fx-logoWrap">
+            <img src="assets/img/logo.png" alt="Axenrich Financial Services" class="fx-logo">
+          </div>
+          <div class="fx-brandText">
+            <h3>Axenrich Financial Services</h3>
+            <p class="fx-tag">Protection • Growth • Confidence</p>
+          </div>
+        </div>
+
+        <p class="fx-desc">
+          Helping families and businesses with life insurance, protection, and financial planning.
+          Clear guidance, simple steps, and support you can trust.
+        </p>
+
+        <div class="fx-badges">
+          <span><i class="fa-solid fa-bolt"></i> Fast Response</span>
+          <span><i class="fa-solid fa-shield-heart"></i> Trusted Guidance</span>
+          <span><i class="fa-solid fa-location-dot"></i> Illinois Office</span>
+        </div>
+
+        <div class="fx-follow">
+          <div class="fx-followTitle">Follow</div>
+          <div class="fx-social">
+            <a class="fx-ic fb" href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="fx-ic ig" href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a class="fx-ic wa" href="#" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a class="fx-ic sc" href="#" aria-label="Snapchat" title="Snapchat"><i class="fa-brands fa-snapchat-ghost"></i></a>
+            <a class="fx-ic li" href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fx-col fx-links">
+        <h4 class="fx-h">Quick Links</h4>
+        <div class="fx-linkGrid">
+          <a href="index.html">Home</a>
+          <a href="life-calculator.html">Life Calculator</a>
+          <a href="join-team.html">Join Team</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <h4 class="fx-h" style="margin-top:18px;">Products</h4>
+        <details class="fx-products">
+          <summary>
+            Browse Products
+            <i class="fa-solid fa-chevron-down"></i>
+          </summary>
+          <div class="fx-prodList">
+            <a href="term-life.html">Term Life</a>
+            <a href="iul.html">IUL</a>
+            <a href="whole-life.html">Whole Life</a>
+            <a href="final-expense.html">Final Expense</a>
+          </div>
+        </details>
+
+        <div class="fx-miniLinks">
+          <a href="privacy.html">Privacy</a>
+          <span>•</span>
+          <a href="terms.html">Terms</a>
+          <span>•</span>
+          <a href="disclaimer.html">Disclaimer</a>
+        </div>
+      </div>
+
+      <div class="fx-col fx-contact">
+        <h4 class="fx-h">Contact</h4>
+
+        <a class="fx-card" href="tel:+12176071382">
+          <div class="fx-ci phone"><i class="fa-solid fa-phone"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Phone</div>
+            <div class="fx-ctValue">217-607-1382</div>
+          </div>
+          <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </a>
+
+        <a class="fx-card" href="mailto:Axenrich@gmail.com">
+          <div class="fx-ci email"><i class="fa-solid fa-envelope"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Email</div>
+            <div class="fx-ctValue">Axenrich@gmail.com</div>
+          </div>
+          <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </a>
+
+        <a class="fx-card" target="_blank" rel="noopener"
+          href="https://www.google.com/maps?q=2860%20South%20Philo%20RD%20Urbana%20IL%2061802">
+          <div class="fx-ci addr"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Office</div>
+            <div class="fx-ctValue">2860 South Philo Rd<br>Urbana, IL 61802</div>
+          </div>
+          <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </a>
+
+        <div class="fx-card fx-hours">
+          <div class="fx-ci hours"><i class="fa-solid fa-clock"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Hours</div>
+            <div class="fx-ctValue">
+              Mon–Fri: 8:00 AM – 5:00 PM<br>
+              Weekends: By appointment only
+            </div>
+          </div>
+        </div>
+
+        <div class="fx-ctaRow">
+          <a class="fx-btn fx-btnPrimary" href="contact.html#message">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </a>
+          <a class="fx-btn fx-btnGhost" href="#quote">
+            <i class="fa-solid fa-bolt"></i> Get Free Quote
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="fx-bottom">
+      <div class="container fx-bottomInner">
+        <div>© <span id="fxYear"></span> Axenrich Financial Services. All rights reserved.</div>
+        <div class="fx-made">
+          Website made by <a href="#" target="_blank" rel="noopener">Modern Code Hub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/app.js"></script>
+  <script>
+    const fxYear = document.getElementById("fxYear");
+    if (fxYear) fxYear.textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

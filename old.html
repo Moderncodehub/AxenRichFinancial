@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Axenrich Financial Services | Insurance • Retirement • Debt Solutions</title>
+  <meta name="description" content="Term Life, IUL, Whole Life, Final Expense, Annuities, Estate Documents, Credit Card Debt Solutions. Book a free consultation today." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Small page-only helpers (optional + safe) -->
+  <style>
+    /* better spacing rhythm */
+    .section-head p{ max-width:78ch; }
+    .muted{ opacity:.85; }
+    .btn{ text-decoration:none; }
+
+    /* new “Why Choose” cards */
+    .why-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .why-card{
+      background:#fff;
+      border:1px solid #e6edf5;
+      border-radius:18px;
+      padding:14px;
+      box-shadow:0 12px 28px rgba(11,42,85,0.06);
+    }
+    .why-ico{
+      width:44px;height:44px;border-radius:14px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,#0b2a55,#1b66ff);
+      color:#fff;font-size:18px;
+      margin-bottom:10px;
+    }
+    .why-card h4{ margin:0 0 6px; color:#0b2a55; }
+    .why-card p{ margin:0; color:#5b6b7a; line-height:1.45; font-weight:700; font-size:13px; }
+
+    /* tighter opportunity layout */
+    .op-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:14px;
+      align-items:start;
+    }
+    .op-box{
+      background:#fff;border:1px solid #e6edf5;border-radius:18px;
+      padding:16px;box-shadow:0 12px 28px rgba(11,42,85,0.06);
+    }
+    .op-steps{
+      display:grid; gap:10px; margin-top:12px;
+    }
+    .op-step{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px; border:1px solid #e6edf5; border-radius:14px;
+      background:#fbfdff;
+    }
+    .op-step b{
+      width:28px;height:28px;border-radius:10px;
+      background:#0b2a55;color:#fff;display:grid;place-items:center;
+      font-weight:900; flex:0 0 auto;
+    }
+    .op-step strong{ display:block; color:#0b2a55; }
+    .op-step p{ margin:4px 0 0; color:#5b6b7a; font-weight:700; font-size:13px; line-height:1.35; }
+
+    /* contact mini card */
+    .contact-mini{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:18px;
+    }
+    .cmini{
+      background:#fff;border:1px solid #e6edf5;border-radius:18px;
+      padding:14px;box-shadow:0 12px 28px rgba(11,42,85,0.06);
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .cmini .ci{
+      width:42px;height:42px;border-radius:14px;
+      background:rgba(11,42,85,.08);
+      display:grid;place-items:center;
+      color:#0b2a55;
+      flex:0 0 auto;
+    }
+    .cmini strong{ display:block; color:#0b2a55; }
+    .cmini a{ color:#0b2a55; font-weight:900; }
+    .cmini p{ margin:4px 0 0; color:#5b6b7a; font-weight:700; }
+
+    @media(max-width:980px){
+      .why-grid{ grid-template-columns:1fr 1fr; }
+      .op-grid{ grid-template-columns:1fr; }
+      .contact-mini{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <span>📞 <a href="tel:+12176071382">217-607-1382</a></span>
+        <span class="sep">•</span>
+        <span>✉️ <a href="mailto:Axenrich@gmail.com">Axenrich@gmail.com</a></span>
+        <span class="sep">•</span>
+        <span>📍 Urbana, IL</span>
+      </div>
+      <div class="topbar-right">
+        <a class="toplink" href="#appointment">Book Appointment</a>
+        <a class="toplink" href="#quote">Free Quote</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <header class="header" id="header">
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <div class="mark">FS</div>
+        <div class="brand-text">
+          <strong>Axenrich Financial Services</strong>
+          <span>Protection • Growth • Confidence</span>
+        </div>
+      </a>
+
+      <nav class="navlinks" id="navlinks">
+        <a class="active" href="index.html">Home</a>
+
+        <div class="nav-dropdown">
+          <button class="nav-dropbtn" type="button">Products ▾</button>
+          <div class="nav-dropmenu">
+            <a href="term-life.html">Term Life</a>
+            <a href="iul.html">IUL</a>
+            <a href="whole-life.html">Whole Life</a>
+            <a href="final-expense.html">Final Expense</a>
+          </div>
+        </div>
+
+        <a href="life-calculator.html">Life Calculator</a>
+        <a href="#planning">Planning</a>
+        <a href="#opportunity">Opportunity</a>
+        <a href="join-team.html">Join a Team</a>
+        <a href="contact.html">Contact</a>
+
+        <a class="btn btn-primary" href="#quote">Get Free Quote</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="#products">Products</a>
+      <a href="life-calculator.html">Life Calculator</a>
+      <a href="#planning">Planning</a>
+      <a href="#opportunity">Opportunity</a>
+      <a href="join-team.html">Join a Team</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn btn-primary" href="#quote">Get Free Quote</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero hero-modern" id="home">
+    <div class="hero-media">
+      <div class="hero-image" id="heroImage"></div>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="container hero-modern-inner">
+      <div class="hero-panel">
+        <div class="badge">Trusted guidance • Free consultation</div>
+        <h1>Protect Your Family.<br><span class="navy">Plan Your Future.</span></h1>
+        <p class="lead">Life insurance, retirement options, estate planning, and debt solutions — all in one place.</p>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#quote">Get Free Quote</a>
+          <a class="btn btn-outline" href="#appointment">Book Call</a>
+        </div>
+
+        <div class="hero-form">
+          <div class="row2">
+            <input id="heroName" type="text" placeholder="Full Name" />
+            <input id="heroPhone" type="tel" placeholder="Phone" />
+          </div>
+
+          <select id="heroProduct">
+            <option>IUL – Index Universal Life</option>
+            <option>Term Life Insurance</option>
+            <option>Whole Life</option>
+            <option>Final Expense</option>
+            <option>Annuity</option>
+            <option>Estate Documents</option>
+            <option>Credit Card Debt Solutions</option>
+          </select>
+
+          <button class="btn btn-primary w100" type="button" id="heroRequestBtn">Request Call</button>
+          <div class="fineprint">No spam. We contact you within business hours.</div>
+        </div>
+
+        <div class="hero-dots">
+          <button class="dot active" data-slide="0"></button>
+          <button class="dot" data-slide="1"></button>
+          <button class="dot" data-slide="2"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-head">
+        <h2>Products & Solutions</h2>
+        <p>Protection, retirement planning, estate guidance, and debt strategies — all in one place.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-top"><div class="ico">🛡️</div><span class="tag">Most Popular</span></div>
+          <h3>Term Life Insurance</h3>
+          <p>Affordable coverage for 10 / 20 / 30 / 35 years.</p>
+          <ul><li>Family income protection</li><li>Budget-friendly</li><li>Flexible options</li></ul>
+          <a class="link" href="term-life.html">Learn More →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><div class="ico">📈</div><span class="tag">Wealth Build</span></div>
+          <h3>IUL – Index Universal Life</h3>
+          <p>Lifetime coverage with cash value growth potential.</p>
+          <ul><li>Cash value strategy</li><li>Tax-advantaged planning</li><li>Retirement support</li></ul>
+          <a class="link" href="iul.html">Learn More →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><div class="ico">🧾</div><span class="tag">Guaranteed</span></div>
+          <h3>Whole Life</h3>
+          <p>Lifetime protection with guaranteed cash value growth.</p>
+          <ul><li>Fixed premiums</li><li>Guaranteed cash value</li><li>Legacy planning</li></ul>
+          <a class="link" href="whole-life.html">Learn More →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><div class="ico">🕊️</div><span class="tag">Seniors</span></div>
+          <h3>Final Expense</h3>
+          <p>Help cover funeral and end-of-life costs.</p>
+          <ul><li>Simple coverage options</li><li>Senior-friendly</li><li>Peace of mind</li></ul>
+          <a class="link" href="final-expense.html">Learn More →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><div class="ico">🏦</div><span class="tag">Retirement</span></div>
+          <h3>Annuities</h3>
+          <p>Income strategies designed for stability.</p>
+          <ul><li>Income planning</li><li>Protection options</li><li>Multiple plan types</li></ul>
+          <a class="link" href="#appointment">Book Consult →</a>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><div class="ico">💳</div><span class="tag">Debt Help</span></div>
+          <h3>Credit Card Debt Solutions</h3>
+          <p>Practical strategies to reduce debt stress.</p>
+          <ul><li>Consolidation guidance</li><li>Lower payment options</li><li>Payoff planning</li></ul>
+          <a class="link" href="#quote">Get Help →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US (NEW) -->
+  <section class="section alt" id="why">
+    <div class="container">
+      <div class="section-head">
+        <h2>Why Clients Choose Axenrich</h2>
+        <p>We keep it simple: clear options, honest guidance, and fast support.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-ico"><i class="fa-solid fa-user-check"></i></div>
+          <h4>Personalized Plans</h4>
+          <p>Coverage and strategy based on your goals, budget, and timeline.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-ico"><i class="fa-solid fa-comments"></i></div>
+          <h4>Clear Explanations</h4>
+          <p>No confusing terms — we explain in simple steps and examples.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-ico"><i class="fa-solid fa-bolt"></i></div>
+          <h4>Fast Response</h4>
+          <p>Call, text, or email — we respond during business hours.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-ico"><i class="fa-solid fa-shield-heart"></i></div>
+          <h4>Long-Term Support</h4>
+          <p>We stay with you: review, update, and keep your plan strong.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANNING -->
+  <section class="section" id="planning">
+    <div class="container">
+      <div class="section-head">
+        <h2>Planning & Strategy</h2>
+        <p>Protect today, build wealth for tomorrow, and reduce stress with a clear plan.</p>
+      </div>
+
+      <div class="mini">
+        <div class="mini-card">
+          <h3>Financial Need Analysis</h3>
+          <p>We review goals, income, expenses, and protection needs.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Income Protection</h3>
+          <p>Life coverage strategy to protect family income and liabilities.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Retirement Strategy</h3>
+          <p>Annuities + cash value planning for long-term income goals.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Debt Strategy</h3>
+          <p>Organized plan for consolidation guidance and payoff tracking.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <a class="btn btn-outline" href="life-calculator.html">Use Life Calculator</a>
+        <a class="btn btn-primary" href="#appointment" style="margin-left:8px;">Book Planning Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPPORTUNITY -->
+  <section class="section alt" id="opportunity">
+    <div class="container">
+      <div class="section-head">
+        <h2>Opportunity: Join Our Team</h2>
+        <p class="muted">Flexible schedule • training • mentorship • growth opportunity.</p>
+      </div>
+
+      <div class="op-grid">
+        <div class="op-box">
+          <h3 style="margin:0;color:#0b2a55;">Simple Path to Get Started</h3>
+          <div class="op-steps">
+            <div class="op-step"><b>1</b><div><strong>Apply</strong><p>Submit your details — we schedule a quick intro call.</p></div></div>
+            <div class="op-step"><b>2</b><div><strong>Training</strong><p>We provide product, process, and compliance training.</p></div></div>
+            <div class="op-step"><b>3</b><div><strong>Mentorship</strong><p>Weekly support to help you build confidence and skills.</p></div></div>
+          </div>
+          <div style="margin-top:14px;">
+            <a class="btn btn-primary" href="join-team.html">Apply Now</a>
+            <a class="btn btn-outline" href="join-team.html#how" style="margin-left:8px;">How It Works</a>
+          </div>
+          <div class="fineprint" style="margin-top:10px;">Licensing requirements vary by state and product type.</div>
+        </div>
+
+        <div class="op-box">
+          <h3 style="margin:0;color:#0b2a55;">Good Fit If You Want…</h3>
+          <ul class="check" style="margin-top:10px;">
+            <li>Part-time or full-time flexibility</li>
+            <li>Coaching + proven scripts</li>
+            <li>Commission-based growth</li>
+            <li>Weekly training webinars</li>
+          </ul>
+          <div class="legal" style="margin-top:10px;">
+            Note: This is informational and not a guarantee of income.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="section" id="quote">
+    <div class="container">
+      <div class="section-head">
+        <h2>Get a Free Quote</h2>
+        <p>Submit your details and we’ll contact you with options.</p>
+      </div>
+
+      <div class="quote-wrap">
+        <form class="quote" id="quoteForm">
+          <div class="grid2">
+            <div class="field">
+              <label>Full Name</label>
+              <input required type="text" name="name" placeholder="Your Name" />
+            </div>
+            <div class="field">
+              <label>Phone</label>
+              <input required type="tel" name="phone" placeholder="217-xxx-xxxx" />
+            </div>
+          </div>
+
+          <div class="grid2">
+            <div class="field">
+              <label>Email</label>
+              <input required type="email" name="email" placeholder="you@email.com" />
+            </div>
+            <div class="field">
+              <label>Product</label>
+              <select name="product">
+                <option>Term Life Insurance</option>
+                <option>IUL – Index Universal Life</option>
+                <option>Whole Life</option>
+                <option>Final Expense</option>
+                <option>Annuity</option>
+                <option>Estate Documents</option>
+                <option>Credit Card Debt Solutions</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Message</label>
+            <textarea name="message" placeholder="Tell us what you're looking for..."></textarea>
+          </div>
+
+          <button class="btn btn-primary w100" type="submit">Submit</button>
+          <div class="fineprint">We respect your privacy. No spam.</div>
+        </form>
+
+        <div class="quote-side">
+          <h3>What happens next?</h3>
+          <div class="timeline">
+            <div class="t"><span></span><div><strong>We review your request</strong><p>Same day during business hours.</p></div></div>
+            <div class="t"><span></span><div><strong>Consultation call</strong><p>We understand goals and needs.</p></div></div>
+            <div class="t"><span></span><div><strong>Options & recommendations</strong><p>Clear, simple choices.</p></div></div>
+            <div class="t"><span></span><div><strong>Next steps</strong><p>Apply, schedule, or refine plan.</p></div></div>
+          </div>
+
+          <div class="legal">
+            Disclaimer: Coverage availability and rates vary by carrier and eligibility. This site is for informational purposes only.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPOINTMENT -->
+  <section class="section alt" id="appointment">
+    <div class="container">
+      <div class="section-head">
+        <h2>Book an Appointment</h2>
+        <p class="muted">Choose a time and we’ll confirm by call or email.</p>
+      </div>
+
+      <form class="appt" id="apptForm">
+        <div class="grid3">
+          <div class="field">
+            <label>Name</label>
+            <input required type="text" name="name" placeholder="Your Name" />
+          </div>
+          <div class="field">
+            <label>Date</label>
+            <input required type="date" name="date" />
+          </div>
+          <div class="field">
+            <label>Time</label>
+            <input required type="time" name="time" />
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="field">
+            <label>Phone</label>
+            <input required type="tel" name="phone" placeholder="217-xxx-xxxx" />
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input required type="email" name="email" placeholder="you@email.com" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Interested In</label>
+          <select name="product">
+            <option>Term Life Insurance</option>
+            <option>IUL – Index Universal Life</option>
+            <option>Whole Life</option>
+            <option>Final Expense</option>
+            <option>Annuity</option>
+            <option>Estate Documents</option>
+            <option>Credit Card Debt Solutions</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Request Appointment</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>FAQ</h2>
+        <p class="muted">Quick answers to common questions.</p>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Do you offer free consultations?</summary>
+          <p>Yes. We offer a free initial consultation to understand your needs and share suitable options.</p>
+        </details>
+        <details>
+          <summary>Is my information private?</summary>
+          <p>Yes. We keep your information confidential and use it only to provide services and follow up.</p>
+        </details>
+        <details>
+          <summary>How quickly will you contact me?</summary>
+          <p>Typically within the same day during business hours.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ✅ PREMIUM FOOTER v2 (keep your current footer styles here) -->
+  <!-- IMPORTANT: your footer year id must be fxYear (not year) -->
+  <!-- Paste your Premium Footer v2 HTML here exactly -->
+  <!-- (I’m keeping your same footer block, only fixing year script below.) -->
+
+  <!-- ✅ PREMIUM FOOTER v2 (Axenrich Financial Services) -->
+  <footer class="fx-footer" id="site-footer">
+    <div class="fx-wave" aria-hidden="true"></div>
+
+    <div class="container fx-footer-inner">
+      <div class="fx-col fx-brand">
+        <div class="fx-brandRow">
+          <div class="fx-logoWrap">
+            <img src="assets/img/logo.png" alt="Axenrich Financial Services" class="fx-logo">
+          </div>
+          <div class="fx-brandText">
+            <h3>Axenrich Financial Services</h3>
+            <p class="fx-tag">Protection • Growth • Confidence</p>
+          </div>
+        </div>
+
+        <p class="fx-desc">
+          Helping families and businesses with life insurance, protection, and financial planning.
+          Clear guidance, simple steps, and support you can trust.
+        </p>
+
+        <div class="fx-badges">
+          <span><i class="fa-solid fa-bolt"></i> Fast Response</span>
+          <span><i class="fa-solid fa-shield-heart"></i> Trusted Guidance</span>
+          <span><i class="fa-solid fa-location-dot"></i> Illinois Office</span>
+        </div>
+
+        <div class="fx-follow">
+          <div class="fx-followTitle">Follow</div>
+          <div class="fx-social">
+            <a class="fx-ic fb" href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="fx-ic ig" href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a class="fx-ic wa" href="#" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a class="fx-ic sc" href="#" aria-label="Snapchat" title="Snapchat"><i class="fa-brands fa-snapchat-ghost"></i></a>
+            <a class="fx-ic li" href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="fx-col fx-links">
+        <h4 class="fx-h">Quick Links</h4>
+        <div class="fx-linkGrid">
+          <a href="index.html">Home</a>
+          <a href="life-calculator.html">Life Calculator</a>
+          <a href="join-team.html">Join Team</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <h4 class="fx-h" style="margin-top:18px;">Products</h4>
+        <details class="fx-products">
+          <summary>
+            Browse Products
+            <i class="fa-solid fa-chevron-down"></i>
+          </summary>
+          <div class="fx-prodList">
+            <a href="term-life.html">Term Life</a>
+            <a href="iul.html">IUL</a>
+            <a href="whole-life.html">Whole Life</a>
+            <a href="final-expense.html">Final Expense</a>
+          </div>
+        </details>
+
+        <div class="fx-miniLinks">
+          <a href="privacy.html">Privacy</a>
+          <span>•</span>
+          <a href="terms.html">Terms</a>
+          <span>•</span>
+          <a href="disclaimer.html">Disclaimer</a>
+        </div>
+      </div>
+
+      <div class="fx-col fx-contact">
+        <h4 class="fx-h">Contact</h4>
+
+        <a class="fx-card" href="tel:+12176071382">
+          <div class="fx-ci phone"><i class="fa-solid fa-phone"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Phone</div>
+            <div class="fx-ctValue">217-607-1382</div>
+          </div>
+          <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </a>
+
+        <a class="fx-card" href="mailto:Axenrich@gmail.com">
+          <div class="fx-ci email"><i class="fa-solid fa-envelope"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Email</div>
+            <div class="fx-ctValue">Axenrich@gmail.com</div>
+          </div>
+          <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </a>
+
+        <a class="fx-card" target="_blank" rel="noopener"
+          href="https://www.google.com/maps?q=2860%20South%20Philo%20RD%20Urbana%20IL%2061802">
+          <div class="fx-ci addr"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Office</div>
+            <div class="fx-ctValue">2860 South Philo Rd<br>Urbana, IL 61802</div>
+          </div>
+          <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </a>
+
+        <div class="fx-card fx-hours">
+          <div class="fx-ci hours"><i class="fa-solid fa-clock"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Hours</div>
+            <div class="fx-ctValue">
+              Mon–Fri: 8:00 AM – 5:00 PM<br>
+              Weekends: By appointment only
+            </div>
+          </div>
+        </div>
+
+        <div class="fx-ctaRow">
+          <a class="fx-btn fx-btnPrimary" href="contact.html#message">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </a>
+          <a class="fx-btn fx-btnGhost" href="#quote">
+            <i class="fa-solid fa-bolt"></i> Get Free Quote
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="fx-bottom">
+      <div class="container fx-bottomInner">
+        <div>© <span id="fxYear"></span> Axenrich Financial Services. All rights reserved.</div>
+        <div class="fx-made">
+          Website made by <a href="#" target="_blank" rel="noopener">Modern Code Hub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/app.js"></script>
+  <script>
+    // ✅ Fix year ids
+    const fxYear = document.getElementById("fxYear");
+    if (fxYear) fxYear.textContent = new Date().getFullYear();
+
+    // quick hero request demo
+    const heroBtn = document.getElementById("heroRequestBtn");
+    if(heroBtn){
+      heroBtn.addEventListener("click", () => {
+        alert("Thank you! We received your request. We'll contact you soon.");
+      });
+    }
+
+    // basic demo submit handlers (optional)
+    document.getElementById("quoteForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Thank you! We received your quote request.");
+      e.target.reset();
+    });
+
+    document.getElementById("apptForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Thank you! Your appointment request was submitted.");
+      e.target.reset();
+    });
+  </script>
+
+</body>
+</html>
