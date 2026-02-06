@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 
-
-    // Mobile menu toggle (with hamburger animation) + close dropdown
+ // Mobile menu toggle (uses .open to match CSS)
     (() => {
       const hamburger = document.getElementById("hamburger");
       const mobileMenu = document.getElementById("mobileMenu");
@@ -23,25 +22,20 @@ document.addEventListener("DOMContentLoaded", () => {
         a.addEventListener("click", () => {
           mobileMenu.classList.remove("open");
           hamburger.classList.remove("is-open");
-
-          const dd = document.querySelector(".m-dropdown");
-          if(dd) dd.classList.remove("open");
         });
       });
     })();
+ 
+    // Mobile Products dropdown
+(() => {
+  const btn = document.getElementById("mProductsBtn");
+  const menu = document.getElementById("mProductsMenu");
+  if(!btn || !menu) return;
 
-    // Mobile Products dropdown (toggle)
-    (() => {
-      const btn = document.getElementById("mProductsBtn");
-      const menuWrap = btn ? btn.closest(".m-dropdown") : null;
-      if(!btn || !menuWrap) return;
-
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        menuWrap.classList.toggle("open");
-      });
-    })();
-
+  btn.addEventListener("click", () => {
+    btn.parentElement.classList.toggle("open");
+  });
+})();
 
   /* ================================
      HERO SLIDER

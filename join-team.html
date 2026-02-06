@@ -260,6 +260,51 @@
       .hero-title{font-size:34px}
       .hero-kpis{grid-template-columns:1fr 1fr}
     }
+
+        /* Mobile version of .get */
+@media (max-width: 740px){
+  .get{
+    width:100%;
+    padding:14px 14px;          /* bigger tap area */
+    border-radius:16px;
+    font-size:15px;
+    justify-content:center;
+    gap:10px;
+    background: var(--navy);
+    color:#fff;
+    border-color: var(--navy);
+    box-shadow: 0 14px 30px rgba(11,42,85,0.12);
+  }
+  .get:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 18px 40px rgba(11,42,85,0.16);
+  }
+}
+@media (max-width: 740px){
+
+  .mobile-menu .get{
+    justify-content:flex-start !important;   /* move text + icon to left */
+    text-align:left;
+  }
+
+  .mobile-menu .get i{
+    margin-right:8px;   /* space between icon and text */
+  }
+
+}
+
+
+@media (max-width: 740px){
+  .get,
+  .get:link,
+  .get:visited{
+    color:#fff !important;
+  }
+
+  .get i{
+    color:#fff !important;
+  }
+}
   </style>
 </head>
 
@@ -355,8 +400,8 @@
         </div>
 
         <a href="life-calculator.html">Life Calculator</a>
-        <a href="#planning">Planning</a>
-        <a href="#opportunity">Opportunity</a>
+        <a href="index.html#planning">Planning</a>
+        <a href="index.html#opportunity">Opportunity</a>
         <a class="active" href="join-team.html">Join a Team</a>
         <a   href="contact.html">Contact</a>
 
@@ -385,11 +430,11 @@
 </div>
 
         <a href="life-calculator.html">Life Calculator</a>
-        <a href="#planning">Planning</a>
-        <a href="#opportunity">Opportunity</a>
+        <a href="index.html#planning">Planning</a>
+        <a href="index.html#opportunity">Opportunity</a>
         <a class="active" href="join-team.html">Join a Team</a>
         <a href="contact.html">Contact</a>
-        <a class="btn btn-primary" href="index.html#quote"><i class="fa-solid fa-bolt"></i> Get Free Quote</a>
+        <a class="get" href="index.html#quote"><i class="fa-solid fa-bolt"></i> Get Free Quote</a>
       </div>
     </div>
   </header>
