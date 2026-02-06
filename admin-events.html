@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Events | Axenrich</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --navy:#0b2a55;
+      --accent:#1b66ff;
+      --border:#e6edf5;
+      --muted:#5b6b7a;
+      --soft:#f6f9fd;
+      --shadow: 0 18px 55px rgba(10, 30, 70, 0.12);
+      --radius:22px;
+      --font: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:var(--font);
+      background:linear-gradient(180deg,#f7fbff,#ffffff);
+      color:#102a43;
+    }
+    a{ color:var(--accent); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .top{
+      background:linear-gradient(180deg,var(--navy),#082347);
+      color:#fff;
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .top .wrap{
+      max-width:1200px; margin:0 auto; padding:16px 16px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      font-weight:900; letter-spacing:-.02em;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18);
+      font-weight:800; font-size:13px;
+      white-space:nowrap;
+    }
+
+    .container{ max-width:1200px; margin:0 auto; padding:22px 16px 60px; }
+    .head h1{ margin:0; color:var(--navy); font-size:32px; letter-spacing:-.03em; }
+    .head p{ margin:10px 0 0; color:var(--muted); font-weight:700; line-height:1.5; max-width:80ch; }
+
+    .grid{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-top:18px; align-items:start; }
+    @media(max-width:980px){ .grid{ grid-template-columns:1fr; } }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:16px;
+    }
+    .card h3{ margin:0 0 6px; color:var(--navy); }
+    .card p{ margin:0; color:var(--muted); font-weight:700; line-height:1.45; }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      height:46px; padding:0 14px; border-radius:14px;
+      font-weight:900; border:1px solid transparent; cursor:pointer;
+      transition:.15s ease;
+      text-decoration:none;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--navy),var(--accent));
+      color:#fff;
+      box-shadow:0 16px 30px rgba(27,102,255,.18);
+    }
+    .btn-primary:hover{ transform:translateY(-1px); filter:brightness(1.02); }
+    .btn-outline{
+      background:#fff;
+      border-color:#dbe6f3;
+      color:var(--navy);
+    }
+    .btn-outline:hover{ transform:translateY(-1px); }
+
+    input, select, textarea{
+      width:100%;
+      border:1px solid #dbe6f3;
+      border-radius:14px;
+      padding:12px;
+      font-weight:800;
+      font-family:var(--font);
+      outline:none;
+      background:#fff;
+    }
+    input:focus,select:focus,textarea:focus{
+      border-color:#9bbcff;
+      box-shadow:0 0 0 4px rgba(27,102,255,0.14);
+    }
+    textarea{ min-height:110px; resize:vertical; }
+
+    .row2{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    @media(max-width:560px){ .row2{ grid-template-columns:1fr; } }
+
+    .field{ display:grid; gap:6px; margin-top:10px; }
+    .field label{ font-size:12px; font-weight:900; color:#243b53; }
+
+    .login-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .login-row input{ min-width:260px; height:46px; }
+
+    .hidden{ display:none !important; }
+    .fine{ margin-top:10px; color:var(--muted); font-weight:700; font-size:12px; line-height:1.4; }
+
+    /* Events UI */
+    .events-list{ display:grid; gap:12px; margin-top:12px; }
+    .event-card{
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:14px;
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+      box-shadow:0 12px 28px rgba(11,42,85,0.06);
+    }
+    .event-top{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+    .event-title{ margin:0; color:var(--navy); }
+    .meta{ margin-top:8px; display:flex; gap:8px; flex-wrap:wrap; }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px;
+      background:#fff; border:1px solid var(--border);
+      font-weight:900; font-size:12px; color:var(--navy);
+    }
+    .event-desc{ margin:10px 0 0; color:var(--muted); font-weight:700; line-height:1.5; }
+    .actions{ margin-top:12px; display:flex; gap:8px; flex-wrap:wrap; }
+    .btn-sm{ height:40px; padding:0 12px; border-radius:12px; font-size:13px; }
+    .btn-danger{
+      background:#fff;
+      border:1px solid rgba(220,38,38,.25);
+      color:#b91c1c;
+    }
+    .btn-danger:hover{ transform:translateY(-1px); background:rgba(220,38,38,.04); }
+  </style>
+</head>
+
+<body>
+
+  <div class="top">
+    <div class="wrap">
+      <div class="brand">
+        <i class="fa-solid fa-calendar-check"></i>
+        Axenrich Admin — Events Manager
+      </div>
+      <div class="badge">
+        <i class="fa-solid fa-shield"></i> Admin-only add/edit/delete
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="head">
+      <h1>Manage Upcoming Events & Zoom Meetings</h1>
+      <p>Only admin can add/edit/delete. Public website can view and join.</p>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="card" id="adminLoginBox" style="margin-top:16px;">
+      <h3>Admin Login</h3>
+      <p>Enter admin password to manage events.</p>
+
+      <div class="login-row">
+        <input type="password" id="adminPass" placeholder="Enter admin password" />
+        <button class="btn btn-primary" id="adminLoginBtn">
+          <i class="fa-solid fa-lock"></i> Login
+        </button>
+      </div>
+
+      <div class="fine">
+        Change password in the code: <b>ADMIN_PASSWORD</b>
+      </div>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div id="adminPanel" class="hidden">
+      <div class="grid">
+
+        <!-- FORM -->
+        <div class="card">
+          <h3 id="formTitle">Add Event</h3>
+          <p>Fill details and publish.</p>
+
+          <form id="eventForm" style="margin-top:12px;">
+            <input type="hidden" id="eventId" />
+
+            <div class="row2">
+              <div class="field">
+                <label>Event Title</label>
+                <input required type="text" id="title" placeholder="Free Life Insurance Q&A" />
+              </div>
+              <div class="field">
+                <label>Date</label>
+                <input required type="date" id="date" />
+              </div>
+            </div>
+
+            <div class="row2">
+              <div class="field">
+                <label>Time</label>
+                <input required type="time" id="time" />
+              </div>
+              <div class="field">
+                <label>Timezone</label>
+                <select id="tz" required>
+                  <option selected>Central (CT)</option>
+                  <option>Eastern (ET)</option>
+                  <option>Mountain (MT)</option>
+                  <option>Pacific (PT)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Zoom/Meeting Link</label>
+              <input required type="url" id="link" placeholder="https://zoom.us/j/..." />
+            </div>
+
+            <div class="field">
+              <label>Description</label>
+              <textarea required id="desc" placeholder="What will be covered?"></textarea>
+            </div>
+
+            <div class="actions">
+              <button class="btn btn-primary btn-sm" type="submit">
+                <i class="fa-solid fa-floppy-disk"></i> Save
+              </button>
+              <button class="btn btn-outline btn-sm" type="button" id="cancelEditBtn">
+                Cancel Edit
+              </button>
+            </div>
+
+            <div class="fine">
+              This demo stores events in this browser (localStorage). If you want real website storage,
+              we can connect PHP + MySQL next.
+            </div>
+          </form>
+        </div>
+
+        <!-- LIST -->
+        <div class="card">
+          <h3>Current Events</h3>
+          <p>Edit / Delete events.</p>
+
+          <div class="events-list" id="adminEventsList"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const EVENTS_KEY = "axenrich_events_v1";
+    const ADMIN_PASSWORD = "Axenrich@123"; // ✅ change this
+
+    const loginBox = document.getElementById("adminLoginBox");
+    const adminPanel = document.getElementById("adminPanel");
+    const passInput = document.getElementById("adminPass");
+    const loginBtn = document.getElementById("adminLoginBtn");
+
+    const form = document.getElementById("eventForm");
+    const formTitle = document.getElementById("formTitle");
+    const cancelEditBtn = document.getElementById("cancelEditBtn");
+    const adminList = document.getElementById("adminEventsList");
+
+    const fId = document.getElementById("eventId");
+    const fTitle = document.getElementById("title");
+    const fDate = document.getElementById("date");
+    const fTime = document.getElementById("time");
+    const fTz = document.getElementById("tz");
+    const fLink = document.getElementById("link");
+    const fDesc = document.getElementById("desc");
+
+    function loadEvents(){
+      try { return JSON.parse(localStorage.getItem(EVENTS_KEY) || "[]"); }
+      catch(e){ return []; }
+    }
+    function saveEvents(list){
+      localStorage.setItem(EVENTS_KEY, JSON.stringify(list));
+    }
+    function resetForm(){
+      fId.value = "";
+      formTitle.textContent = "Add Event";
+      form.reset();
+    }
+
+    function renderAdmin(){
+      const list = loadEvents();
+
+      if(!list.length){
+        adminList.innerHTML = `
+          <div class="event-card">
+            <p class="event-desc">No events added yet.</p>
+          </div>
+        `;
+        return;
+      }
+
+      adminList.innerHTML = list.map(ev => `
+        <div class="event-card">
+          <div class="event-top">
+            <div>
+              <h3 class="event-title">${ev.title}</h3>
+              <div class="meta">
+                <span class="chip"><i class="fa-solid fa-calendar"></i> ${ev.date}</span>
+                <span class="chip"><i class="fa-solid fa-clock"></i> ${ev.time} • ${ev.tz}</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="event-desc">${ev.desc}</p>
+
+          <div class="actions">
+            <a class="btn btn-outline btn-sm" href="${ev.link}" target="_blank" rel="noopener">
+              <i class="fa-solid fa-video"></i> Test Link
+            </a>
+
+            <button class="btn btn-outline btn-sm" type="button" data-edit="${ev.id}">
+              <i class="fa-solid fa-pen"></i> Edit
+            </button>
+
+            <button class="btn btn-danger btn-sm" type="button" data-del="${ev.id}">
+              <i class="fa-solid fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+      `).join("");
+
+      // Edit handlers
+      adminList.querySelectorAll("[data-edit]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-edit");
+          const item = loadEvents().find(x => x.id === id);
+          if(!item) return;
+
+          fId.value = item.id;
+          fTitle.value = item.title;
+          fDate.value = item.date;
+          fTime.value = item.time;
+          fTz.value = item.tz;
+          fLink.value = item.link;
+          fDesc.value = item.desc;
+
+          formTitle.textContent = "Edit Event";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
+
+      // Delete handlers
+      adminList.querySelectorAll("[data-del]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-del");
+          if(!confirm("Delete this event?")) return;
+
+          saveEvents(loadEvents().filter(x => x.id !== id));
+          renderAdmin();
+        });
+      });
+    }
+
+    // Login
+    loginBtn.addEventListener("click", () => {
+      if(passInput.value === ADMIN_PASSWORD){
+        loginBox.classList.add("hidden");
+        adminPanel.classList.remove("hidden");
+        renderAdmin();
+      } else {
+        alert("Incorrect password.");
+      }
+    });
+
+    // Save event
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const list = loadEvents();
+      const isEdit = !!fId.value;
+
+      const payload = {
+        id: isEdit ? fId.value : ("ev_" + Date.now()),
+        title: fTitle.value.trim(),
+        date: fDate.value.trim(),
+        time: fTime.value.trim(),
+        tz: fTz.value.trim(),
+        link: fLink.value.trim(),
+        desc: fDesc.value.trim()
+      };
+
+      const next = isEdit
+        ? list.map(x => x.id === payload.id ? payload : x)
+        : [payload, ...list];
+
+      saveEvents(next);
+      resetForm();
+      renderAdmin();
+      alert("Saved!");
+    });
+
+    cancelEditBtn.addEventListener("click", resetForm);
+  </script>
+</body>
+</html>

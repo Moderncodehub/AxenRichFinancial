@@ -3,11 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Life Calculation | Modern Form</title>
+  <title>Life Calculator | Axenrich Financial Services</title>
 
+  <!-- Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
     /* =========================================================
@@ -31,396 +35,256 @@
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);background:var(--bg)}
     a{color:inherit;text-decoration:none}
-    .container{width:min(1200px, 92%);margin:0 auto}
+    body{ overflow-x:hidden; }
+    .container{width:min(1200px, calc(100% - 28px));margin:0 auto}
 
-  
-.topbar-premium{
-  width:100%;
-  background: linear-gradient(180deg,#0b2a55 0%, #082144 100%);
-  color:#eaf2ff;
-  border-bottom:1px solid rgba(255,255,255,.10);
-  font-size:13px;
-}
+    /* =========================================================
+      TOP BAR (Premium)
+    ========================================================= */
+    .topbar-premium{
+      width:100%;
+      background: linear-gradient(180deg,#0b2a55 0%, #082144 100%);
+      color:#eaf2ff;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      font-size:13px;
+    }
+    .topbar-premium a{ color:#eaf2ff; text-decoration:none; font-weight:900; }
+    .topbar-premium a:hover{ text-decoration:underline; opacity:1; }
 
-.topbar-premium a{ color:#eaf2ff; text-decoration:none; font-weight:900; }
-.topbar-premium a:hover{ text-decoration:underline; opacity:1; }
+    .topbar-wrap{
+      width:100%;
+      padding:10px 14px;
+      display:grid;
+      grid-template-columns: auto 1fr auto;
+      align-items:center;
+      gap:18px;
+    }
 
-/* FULL WIDTH WRAP (NOT .container) */
-.topbar-wrap{
-  width:100%;
-  padding:10px 18px; /* edge spacing */
-  display:grid;
-  grid-template-columns: auto 1fr auto;
-  align-items:center;
-  gap:18px;
-}
+    .topbar-left{
+      justify-self:start;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      white-space:nowrap;
+    }
+    .topbar-right{ justify-self:end; }
 
-/* LEFT flush */
-.topbar-left{
-  justify-self:start;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  white-space:nowrap;
-}
+    .tb-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
+      font-weight:900;
+    }
+    .tb-dot{
+      width:6px;height:6px;border-radius:50%;
+      background: rgba(255,255,255,.35);
+      display:inline-block;
+    }
 
-/* RIGHT flush */
-.topbar-right{
-  justify-self:end;
-}
+    .topbar-ticker{
+      justify-self:stretch;
+      position:relative;
+      min-width:0;
+    }
+    .ticker-window{ overflow:hidden; white-space:nowrap; width:100%; }
+    .ticker-track{
+      display:inline-flex;
+      align-items:center;
+      gap:26px;
+      animation: topTickerMove 28s linear infinite;
+      font-weight:900;
+      opacity:.95;
+    }
+    .ticker-track span{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .ticker-track i{ color:#9bc3ff; }
+    .ticker-fade{
+      position:absolute; top:0; bottom:0; width:42px;
+      pointer-events:none;
+    }
+    .ticker-fade.left{
+      left:0;
+      background: linear-gradient(90deg, rgba(11,42,85,1) 0%, rgba(11,42,85,0) 100%);
+    }
+    .ticker-fade.right{
+      right:0;
+      background: linear-gradient(270deg, rgba(11,42,85,1) 0%, rgba(11,42,85,0) 100%);
+    }
+    .topbar-ticker:hover .ticker-track{ animation-play-state:paused; }
 
-/* contact chips */
-.tb-chip{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:7px 10px;
-  border-radius:999px;
-  background: rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.10);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.10);
-  font-weight:900;
-}
-.tb-dot{
-  width:6px;height:6px;border-radius:50%;
-  background: rgba(255,255,255,.35);
-  display:inline-block;
-}
+    @keyframes topTickerMove{
+      0%{ transform: translateX(0); }
+      100%{ transform: translateX(-50%); }
+    }
 
-/* CENTER ticker true center */
-.topbar-ticker{
-  justify-self:stretch;
-  position:relative;
-  min-width:0;
-}
-.ticker-window{ overflow:hidden; white-space:nowrap; width:100%; }
-.ticker-track{
-  display:inline-flex;
-  align-items:center;
-  gap:26px;
-  animation: topTickerMove 28s linear infinite;
-  font-weight:900;
-  opacity:.95;
-}
-.ticker-track span{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:6px 12px;
-  border-radius:999px;
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.10);
-}
-.ticker-track i{ color:#9bc3ff; }
-
-.ticker-fade{
-  position:absolute; top:0; bottom:0; width:42px;
-  pointer-events:none;
-}
-.ticker-fade.left{
-  left:0;
-  background: linear-gradient(90deg, rgba(11,42,85,1) 0%, rgba(11,42,85,0) 100%);
-}
-.ticker-fade.right{
-  right:0;
-  background: linear-gradient(270deg, rgba(11,42,85,1) 0%, rgba(11,42,85,0) 100%);
-}
-
-.topbar-ticker:hover .ticker-track{ animation-play-state:paused; }
-
-@keyframes topTickerMove{
-  0%{ transform: translateX(0); }
-  100%{ transform: translateX(-50%); }
-}
-
-/* SOCIAL */
-.top-social{ display:flex; align-items:center; gap:8px; }
-
-.sicon{
-  width:32px;height:32px;
-  border-radius:12px;
-  display:grid;place-items:center;
-  color:#fff;
-  border:1px solid rgba(255,255,255,.14);
-  box-shadow:0 10px 24px rgba(0,0,0,.22);
-  transition:transform .15s ease, filter .15s ease;
-}
-.sicon:hover{ transform:translateY(-2px); filter:brightness(1.05); }
-
-.sicon.fb{ background:#1877F2; }
-.sicon.ig{
-  background: radial-gradient(circle at 30% 110%,
-    #fdf497 0%, #fdf497 5%,
-    #fd5949 45%, #d6249f 60%,
-    #285AEB 90%);
-}
-.sicon.wa{ background:#25D366; }
-.sicon.sc{ background:#FFFC00; color:#0b2a55; } /* visible on navy */
-.sicon.li{ background:#0A66C2; }
-
-/* responsive */
-@media(max-width: 980px){
-  .topbar-wrap{
-    grid-template-columns: 1fr auto;
-    gap:10px;
-  }
-  .topbar-ticker{ display:none; }
-  .topbar-left{ flex-wrap:wrap; white-space:normal; }
-}
-
-/* =========================================================
-   2) HEADER / NAV
-========================================================= */
-.header{
-  position:sticky;top:0;z-index:999;
-  background:#fff;
-  border-bottom:1px solid var(--border);
-}
-.nav{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 0;gap:14px;
-}
-.brand{display:flex;align-items:center;gap:12px}
-.mark{
-  width:46px;height:46px;border-radius:14px;
-  background: linear-gradient(135deg, var(--navy), var(--accent));
-  display:grid;place-items:center;color:#fff;font-weight:900;
-  box-shadow: 0 10px 22px rgba(11,42,85,0.18);
-}
-.mark.sm{width:40px;height:40px;border-radius:12px}
-.brand-text strong{display:block;font-size:14px}
-.brand-text span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
-
-.navlinks{display:flex;align-items:center;gap:18px}
-.navlinks a{
-  color:#243b53;
-  font-weight:800;
-  font-size:14px;
-}
-.navlinks a:hover{color:var(--navy)}
-
-.hamburger{display:none;background:transparent;border:0;cursor:pointer}
-.hamburger span{display:block;width:26px;height:2px;background:var(--navy);margin:6px 0;border-radius:2px}
-
-.mobile-menu{
-  display:none;
-  padding:10px 0 16px;
-  border-top:1px solid var(--border);
-}
-.mobile-menu a{
-  display:block;
-  padding:12px 0;
-  color:#243b53;
-  font-weight:800;
-}
-.get{
-  display:inline-flex;align-items:center;justify-content:center;
-  padding:12px 16px;
-  border-radius:14px;
-  font-weight:900;
-  font-size:14px;
-  border:1px solid var(--border);
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-}
-.get:hover{transform: translateY(-1px);box-shadow: 0 10px 24px rgba(11,42,85,0.12)}
+    .top-social{ display:flex; align-items:center; gap:8px; }
+    .sicon{
+      width:32px;height:32px;
+      border-radius:12px;
+      display:grid;place-items:center;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 10px 24px rgba(0,0,0,.22);
+      transition:transform .15s ease, filter .15s ease;
+    }
+    .sicon:hover{ transform:translateY(-2px); filter:brightness(1.05); }
+    .sicon.fb{ background:#1877F2; }
+    .sicon.ig{
+      background: radial-gradient(circle at 30% 110%,
+        #fdf497 0%, #fdf497 5%,
+        #fd5949 45%, #d6249f 60%,
+        #285AEB 90%);
+    }
+    .sicon.wa{ background:#25D366; }
+    .sicon.sc{ background:#FFFC00; color:#0b2a55; }
+    .sicon.li{ background:#0A66C2; }
  
 
-/* =========================================================
-   3) BUTTONS
-========================================================= */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  padding:12px 16px;
-  border-radius:14px;
-  font-weight:900;
-  font-size:14px;
-  border:1px solid var(--border);
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-}
-.btn:hover{transform: translateY(-1px);box-shadow: 0 10px 24px rgba(11,42,85,0.12)}
-.btn-primary{
-  background: var(--navy);
-  color:white;
-  border-color: var(--navy);
-}
-.btn-outline{
-  background:#fff;
-  color:var(--navy);
-  border:1px solid #cfe0f5;
-}
-.w100{width:100%}
+    /* =========================================================
+      HEADER / NAV
+    ========================================================= */
+    .header{
+      position:sticky;top:0;z-index:999;
+      background:#fff;
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:12px 0;gap:14px;
+    }
 
-/* =========================================================
-   4) NAV DROPDOWN (DESKTOP HOVER)
-========================================================= */
-.nav-dropdown{position:relative}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      text-decoration:none;
+    }
+    .logo-wrap{ width:78px; height:78px; }
+    .logo-img{
+      width:92%;
+      height:92%;
+      object-fit:contain;
+      transform:scale(1.38);
+      display:block;
+    }
+    .brand-text strong{
+      font-size:16px;
+      display:block;
+      line-height:1.1;
+    }
+    .brand-text span{
+      font-size:12px;
+      font-weight:600;
+      opacity:.8;
+    }
 
-.nav-dropbtn{
-  background:none;
-  border:none;
-  font: inherit;
-  font-weight:800;              /* match nav links */
-  font-size:14px;
-  cursor:pointer;
-  color:#243b53;
-  padding:10px 6px;
-}
-.nav-dropdown:hover .nav-dropbtn{color:var(--navy)}
+    .navlinks{display:flex;align-items:center;gap:18px}
+    .navlinks a{
+      color:#243b53;
+      font-weight:800;
+      font-size:14px;
+    }
+    .navlinks a:hover{color:var(--navy)}
 
-.nav-dropmenu{
-  position:absolute;
-  top:100%;
-  left:0;
-  min-width:220px;
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:14px;
-  box-shadow:0 18px 45px rgba(11,42,85,0.14);
-  padding:6px 0;
-  display:none;
-  z-index:50;
-}
-.nav-dropmenu a{
-  display:block;
-  padding:10px 14px;
-  color:#223;
-  font-weight:700;
-}
-.nav-dropmenu a:hover{
-  background:#f4f7fb;
-  color:var(--navy);
-}
-.nav-dropdown:hover .nav-dropmenu{display:block}
-/* NAV BRAND LOGO */
- .header .nav{
-  padding:10px 0;  /* gives room for bigger logo */
-}
+    .navlinks a.active{
+      color: var(--navy);
+      position: relative;
+    }
+    .navlinks a.active::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-10px;
+      width:100%;
+      height:3px;
+      border-radius:999px;
+      background: var(--navy);
+    }
 
-/* ===== NAV BRAND (BIGGER LOGO) ===== */
- /* ================================
-   NAVBAR LOGO — PREMIUM SIZE
-================================ */
+    .get{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:900;
+      font-size:14px;
+      border:1px solid var(--border);
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      background:#fff;
+    }
+    .get:hover{transform: translateY(-1px);box-shadow: 0 10px 24px rgba(11,42,85,0.12)}
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  text-decoration:none;
-}
+    /* dropdown (desktop hover) */
+    .nav-dropdown{position:relative}
+    .nav-dropbtn{
+      background:none;border:none;font:inherit;
+      font-weight:800;font-size:14px;cursor:pointer;
+      color:#243b53;
+      padding:10px 6px;
+    }
+    .nav-dropdown:hover .nav-dropbtn{color:var(--navy)}
+    .nav-dropmenu{
+      position:absolute; top:100%; left:0;
+      min-width:220px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      box-shadow:0 18px 45px rgba(11,42,85,0.14);
+      padding:6px 0;
+      display:none;
+      z-index:50;
+    }
+    .nav-dropmenu a{
+      display:block;
+      padding:10px 14px;
+      color:#223;
+      font-weight:700;
+    }
+    .nav-dropmenu a:hover{
+      background:#f4f7fb;
+      color:var(--navy);
+    }
+    .nav-dropdown:hover .nav-dropmenu{display:block}
 
-/* outer box */
- 
+    /* hamburger */
+    .hamburger{display:none;background:transparent;border:0;cursor:pointer}
+    .hamburger span{display:block;width:26px;height:2px;background:var(--navy);margin:6px 0;border-radius:2px;transition:.18s ease}
+    .hamburger.is-open span:nth-child(1){ transform: translateY(8px) rotate(45deg); }
+    .hamburger.is-open span:nth-child(2){ opacity:0; }
+    .hamburger.is-open span:nth-child(3){ transform: translateY(-8px) rotate(-45deg); }
 
-/* actual logo */
-.logo-img{
-  width:92%;
-  height:92%;
-  object-fit:contain;
-  transform:scale(1.32);   /* KEY: zooms inside transparent PNG */
-  display:block;
-}
+    /* mobile menu (matches JS .open) */
+    .mobile-menu{ display:none; }
+    .mobile-menu.open{ display:block; }
 
-/* text */
-.brand-text strong{
-  font-size:16px;
-  display:block;
-  line-height:1.1;
-}
-
-.brand-text span{
-  font-size:12px;
-  font-weight:600;
-  opacity:.8;
-}
-
-/* navbar spacing so logo fits */
-.header .nav{
-  padding:12px 0;
-}
-
-/* mobile */
-@media(max-width:768px){
-  .logo-wrap{ width:56px; height:56px; }
-  .logo-img{ transform:scale(1.28); }
-  .brand-text span{ display:none; }
-}
-.logo-wrap{ width:78px; height:78px; }
-.logo-img{ transform:scale(1.38); }
-
-
-/* =========================================================
-   2) HEADER / NAV
-========================================================= */
-.header{
-  position:sticky;top:0;z-index:999;
-  background:#fff;
-  border-bottom:1px solid var(--border);
-}
-.nav{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 0;gap:14px;
-}
-.brand{display:flex;align-items:center;gap:12px}
-.mark{
-  width:46px;height:46px;border-radius:14px;
-  background: linear-gradient(135deg, var(--navy), var(--accent));
-  display:grid;place-items:center;color:#fff;font-weight:900;
-  box-shadow: 0 10px 22px rgba(11,42,85,0.18);
-}
-.mark.sm{width:40px;height:40px;border-radius:12px}
-.brand-text strong{display:block;font-size:14px}
-.brand-text span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
-
-.navlinks{display:flex;align-items:center;gap:18px}
-.navlinks a{
-  color:#243b53;
-  font-weight:800;
-  font-size:14px;
-}
-.navlinks a:hover{color:var(--navy)}
-
-.hamburger{display:none;background:transparent;border:0;cursor:pointer}
-.hamburger span{display:block;width:26px;height:2px;background:var(--navy);margin:6px 0;border-radius:2px}
-
-.mobile-menu{
-  display:none;
-  padding:10px 0 16px;
-  border-top:1px solid var(--border);
-}
-.mobile-menu a{
-  display:block;
-  padding:12px 0;
-  color:#243b53;
-  font-weight:800;
-}
-
-/* =========================================================
-   3) BUTTONS
-========================================================= */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  padding:12px 16px;
-  border-radius:14px;
-  font-weight:900;
-  font-size:14px;
-  border:1px solid var(--border);
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-}
-.btn:hover{transform: translateY(-1px);box-shadow: 0 10px 24px rgba(11,42,85,0.12)}
-.btn-primary{
-  background: var(--navy);
-  color:#fff;
-  border-color: var(--navy);
-}
-.btn-outline{
-  background:#fff;
-  color:var(--navy);
-  border:1px solid #cfe0f5;
-}
-.w100{width:100%}
-
- 
-
+    /* =========================================================
+      BUTTONS
+    ========================================================= */
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:10px;
+      font-weight:900;font-size:13px;
+      border:1px solid var(--border);
+      cursor:pointer;background:#fff;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      gap:8px;
+    }
+    .btn:hover{transform: translateY(-1px);box-shadow:0 10px 24px rgba(11,42,85,0.10)}
+    .btn-primary{background:var(--navy);border-color:var(--navy);color:#fff}
+    .btn-soft{background:#f3f7ff;border-color:#dbe6f3;color:var(--navy)}
+    .btn-soft:hover{background:#eaf2ff}
+    .btn-green{background:var(--success);border-color:var(--success);color:#fff}
 
     /* =========================================================
       PAGE
@@ -573,22 +437,6 @@
       color:var(--navy);
     }
 
-    /* buttons */
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:10px 14px;border-radius:10px;
-      font-weight:900;font-size:13px;
-      border:1px solid var(--border);
-      cursor:pointer;
-      background:#fff;
-      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-    }
-    .btn:hover{transform: translateY(-1px);box-shadow:0 10px 24px rgba(11,42,85,0.10)}
-    .btn-primary{background:var(--navy);border-color:var(--navy);color:#fff}
-    .btn-soft{background:#f3f7ff;border-color:#dbe6f3;color:var(--navy)}
-    .btn-soft:hover{background:#eaf2ff}
-    .btn-green{background:var(--success);border-color:var(--success);color:#fff}
-
     .actionbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0 0;flex-wrap:wrap}
     .actionbar .left,.actionbar .right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 
@@ -604,6 +452,7 @@
     .notes-area:focus{border-color:#9bbcff;box-shadow:0 0 0 4px rgba(27,102,255,0.14)}
     .muted{color:var(--muted);font-size:12px}
 
+    /* print */
     @media print{
       .no-print{display:none !important}
       .page-head{border:none;background:#fff;padding:0 0 8px}
@@ -613,446 +462,439 @@
       .container{width:100%}
     }
 
+    /* =========================================================
+      MOBILE (nav logo center + hide brand text + menu panel)
+    ========================================================= */
+    @media (max-width: 740px){
+      .navlinks{display:none}
+      .hamburger{display:block}
+
+      .header .nav{
+        display:grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items:center;
+      }
+      .brand{ grid-column:2; justify-self:center; margin:0; }
+      .hamburger{ grid-column:3; justify-self:end; }
+
+      .brand-text{ display:none; }
+
+      .logo-wrap{ width:56px; height:56px; }
+      .logo-img{ transform:scale(1.28); }
+
+      .mobile-menu{
+        padding: 12px 14px 16px;
+        margin: 8px 0 14px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: linear-gradient(180deg,#ffffff,#fbfdff);
+        box-shadow: 0 18px 45px rgba(11,42,85,0.10);
+      }
+      .mobile-menu a{
+        padding: 12px 12px;
+        border-radius: 14px;
+        font-size: 15px;
+        font-weight: 900;
+        color: var(--navy);
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+      }
+      .mobile-menu a:hover{ background: rgba(27,102,255,0.08); }
+      .mobile-menu .btn{ width:100%; margin-top:8px; border-radius:14px; }
+    }
+
     @media (max-width: 720px){
       .row{grid-template-columns:1fr;gap:6px}
       .total-row{grid-template-columns:1fr;gap:8px}
       .phone-combo{grid-template-columns: 80px 1fr 44px}
     }
 
-     
-.fx-footer{
-  position:relative;
-  color:#eaf2ff;
-  background:
-    radial-gradient(1200px 420px at 18% 12%, rgba(27,102,255,.22), transparent 60%),
-    radial-gradient(900px 380px at 85% 20%, rgba(255,255,255,.08), transparent 55%),
-    linear-gradient(180deg, #082447 0%, #071d38 55%, #06172f 100%);
-  overflow:hidden;
-  border-top:1px solid rgba(255,255,255,0.10);
-}
-
-/* subtle animated sheen */
-.fx-footer::before{
-  content:"";
-  position:absolute;
-  inset:-40%;
-  background: conic-gradient(from 180deg, transparent 0 40%, rgba(255,255,255,.06) 45%, transparent 55% 100%);
-  animation: fxSpin 14s linear infinite;
-  opacity:.55;
-  pointer-events:none;
-}
-@keyframes fxSpin{
-  0%{transform:rotate(0deg)}
-  100%{transform:rotate(360deg)}
-}
-
-/* wave top */
-.fx-wave{
-  height:64px;
-  background: linear-gradient(180deg, rgba(255,255,255,.10), transparent);
-  mask-image: radial-gradient(180px 60px at 10% 100%, #000 55%, transparent 60%),
-              radial-gradient(240px 70px at 35% 100%, #000 55%, transparent 60%),
-              radial-gradient(220px 70px at 60% 100%, #000 55%, transparent 60%),
-              radial-gradient(260px 80px at 88% 100%, #000 55%, transparent 60%);
-  opacity:.8;
-}
-
-.fx-footer-inner{
-  position:relative;
-  z-index:2;
-  padding:44px 0 28px;
-  display:grid;
-  grid-template-columns: 1.25fr .9fr 1.15fr;
-  gap:34px;
-  align-items:start;
-}
-
-/* column common */
-.fx-col{min-width:0}
-.fx-h{
-  margin:0 0 12px;
-  font-size:14px;
-  letter-spacing:.10em;
-  text-transform:uppercase;
-  color:#ffffff;
-}
-
-/* brand */
-.fx-brandRow{
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
-.fx-logoWrap{
-  width:120px;height:100px;
-  border-radius:20px;
-  padding:10px;
-  background: white;
-  box-shadow:
-    0 18px 45px rgba(0,0,0,0.40),
-    0 0 0 1px rgba(255,255,255,0.12) inset,
-    0 0 26px rgba(27,102,255,0.35);
-  backdrop-filter: blur(8px);
-}
-.fx-logo{
-  width:100%;height:100%;
-  object-fit:contain;
-  display:block;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,.35));
-}
-.fx-brandText h3{
-  margin:0;
-  font-size:20px;
-  color:#fff;
-}
-.fx-tag{
-  margin:4px 0 0;
-  color:rgba(234,242,255,.75);
-  font-weight:700;
-  font-size:12px;
-}
-.fx-desc{
-  margin:14px 0 0;
-  color:rgba(234,242,255,.80);
-  line-height:1.55;
-  max-width:52ch;
-}
-
-/* badges */
-.fx-badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:14px;
-}
-.fx-badges span{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.06);
-  font-weight:800;
-  font-size:12px;
-  color:#fff;
-}
-
-/* follow */
-.fx-follow{margin-top:16px}
-.fx-followTitle{
-  font-weight:900;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  font-size:12px;
-  color:rgba(255,255,255,.90);
-  margin-bottom:10px;
-}
-.fx-social{display:flex;gap:12px;flex-wrap:wrap}
-.fx-ic{
-  width:44px;height:44px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:18px;
-  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
-  box-shadow:0 10px 22px rgba(0,0,0,.25);
-}
-.fx-ic:hover{
-  transform: translateY(-3px);
-  box-shadow:0 18px 30px rgba(0,0,0,.35);
-  filter:brightness(1.05);
-}
-
-/* true brand colors */
-.fx-ic.fb{background:#1877F2}
-.fx-ic.ig{background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)}
-.fx-ic.wa{background:#25D366}
-.fx-ic.sc{background:#FFFC00;color:#111}  /* ✅ visible snapchat */
-.fx-ic.li{background:#0A66C2}
-
-/* links */
-.fx-linkGrid{
-  display:grid;
-  gap:10px;
-}
-.fx-linkGrid a{
-  color:rgba(234,242,255,.86);
-  font-weight:800;
-}
-.fx-linkGrid a:hover{color:#fff;text-decoration:underline}
-
-.fx-products{
-  margin-top:10px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.06);
-  overflow:hidden;
-}
-.fx-products summary{
-  cursor:pointer;
-  padding:12px 14px;
-  list-style:none;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  font-weight:900;
-  color:#fff;
-}
-.fx-products summary::-webkit-details-marker{display:none}
-.fx-products summary i{
-  opacity:.9;
-  transition:transform .18s ease;
-}
-.fx-products[open] summary i{transform:rotate(180deg)}
-.fx-prodList{
-  display:grid;
-  padding:8px 14px 14px;
-  gap:10px;
-  border-top:1px solid rgba(255,255,255,0.12);
-}
-.fx-prodList a{
-  color:rgba(234,242,255,.86);
-  font-weight:800;
-}
-.fx-prodList a:hover{color:#fff;text-decoration:underline}
-
-.fx-miniLinks{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-top:16px;
-  color:rgba(234,242,255,.72);
-  font-weight:800;
-}
-.fx-miniLinks a{color:rgba(234,242,255,.85)}
-.fx-miniLinks a:hover{color:#fff;text-decoration:underline}
-
-/* contact cards */
-.fx-card{
-  display:flex;
-  align-items:flex-start;
-  gap:12px;
-  padding:14px 14px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,0.14);
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-  box-shadow:0 14px 30px rgba(0,0,0,.22);
-  text-decoration:none;
-  color:#fff;
-  margin-bottom:12px;
-}
-.fx-card:hover{
-  box-shadow:0 20px 40px rgba(0,0,0,.32);
-  border-color: rgba(255,255,255,0.18);
-}
-.fx-ci{
-  width:40px;height:40px;
-  border-radius:14px;
-  display:grid;
-  place-items:center;
-  background: rgba(255,255,255,0.10);
-  box-shadow:0 0 0 1px rgba(255,255,255,0.10) inset;
-  flex:0 0 auto;
-}
-.fx-ci.phone i{color:#ff4d8d}
-.fx-ci.email i{color:#9bd2ff}
-.fx-ci.addr  i{color:#ff6b6b}
-.fx-ci.hours i{color:#ffd166}
-
-.fx-ctLabel{
-  font-size:12px;
-  color:rgba(234,242,255,.70);
-  font-weight:900;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-.fx-ctValue{
-  margin-top:3px;
-  font-weight:900;
-  color:#fff;
-  line-height:1.35;
-}
-.fx-arrow{
-  margin-left:auto;
-  opacity:.75;
-  transform:translateY(2px);
-}
-.fx-card:hover .fx-arrow{opacity:1}
-
-/* hours card (non link) */
-.fx-hours{cursor:default}
-.fx-hours .fx-arrow{display:none}
-
-/* CTA buttons */
-.fx-ctaRow{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:10px;
-  margin-top:10px;
-}
-.fx-btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  padding:12px 14px;
-  border-radius:14px;
-  font-weight:900;
-  border:1px solid rgba(255,255,255,0.16);
-  text-decoration:none;
-  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-}
-.fx-btn:hover{transform:translateY(-2px);box-shadow:0 16px 28px rgba(0,0,0,.28)}
-.fx-btnPrimary{
-  background: linear-gradient(135deg, rgba(27,102,255,0.95), rgba(27,102,255,0.55));
-  color:#fff;
-  border-color: rgba(155,190,255,0.30);
-}
-.fx-btnGhost{
-  background: rgba(255,255,255,0.06);
-  color:#fff;
-}
-
-/* bottom bar */
-.fx-bottom{
-  position:relative;
-  z-index:2;
-  border-top:1px solid rgba(255,255,255,0.10);
-  padding:14px 0;
-  background: rgba(0,0,0,0.10);
-}
-.fx-bottomInner{
-  display:flex;
-  justify-content:space-between;
-  gap:14px;
-  flex-wrap:wrap;
-  color:rgba(234,242,255,.82);
-  font-weight:800;
-  font-size:13px;
-}
-.fx-made a{
-  color:#fff;
-  text-decoration:none;
-  border-bottom:1px dashed rgba(255,255,255,0.35);
-}
-.fx-made a:hover{border-bottom-color:#fff}
-
-/* responsive */
-@media (max-width: 980px){
-  .fx-footer-inner{
-    grid-template-columns:1fr;
-    gap:22px;
-  }
-  .fx-ctaRow{grid-template-columns:1fr}
-}
-
-    .navlinks a.active{
-      color: var(--navy);
-      position: relative;
+    /* =========================================================
+      FOOTER (Premium)
+    ========================================================= */
+    .fx-footer{
+      position:relative;
+      color:#eaf2ff;
+      background:
+        radial-gradient(1200px 420px at 18% 12%, rgba(27,102,255,.22), transparent 60%),
+        radial-gradient(900px 380px at 85% 20%, rgba(255,255,255,.08), transparent 55%),
+        linear-gradient(180deg, #082447 0%, #071d38 55%, #06172f 100%);
+      overflow:hidden;
+      border-top:1px solid rgba(255,255,255,0.10);
     }
-    .navlinks a.active::after{
+    .fx-footer::before{
       content:"";
       position:absolute;
-      left:0;
-      bottom:-10px;
-      width:100%;
-      height:3px;
-      border-radius:999px;
-      background: var(--navy);
+      inset:-40%;
+      background: conic-gradient(from 180deg, transparent 0 40%, rgba(255,255,255,.06) 45%, transparent 55% 100%);
+      animation: fxSpin 14s linear infinite;
+      opacity:.55;
+      pointer-events:none;
+    }
+    @keyframes fxSpin{ 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+    .fx-wave{
+      height:64px;
+      background: linear-gradient(180deg, rgba(255,255,255,.10), transparent);
+      mask-image: radial-gradient(180px 60px at 10% 100%, #000 55%, transparent 60%),
+                  radial-gradient(240px 70px at 35% 100%, #000 55%, transparent 60%),
+                  radial-gradient(220px 70px at 60% 100%, #000 55%, transparent 60%),
+                  radial-gradient(260px 80px at 88% 100%, #000 55%, transparent 60%);
+      opacity:.8;
+    }
+    .fx-footer-inner{
+      position:relative;
+      z-index:2;
+      padding:44px 0 28px;
+      display:grid;
+      grid-template-columns: 1.25fr .9fr 1.15fr;
+      gap:34px;
+      align-items:start;
+    }
+    .fx-col{min-width:0}
+    .fx-h{
+      margin:0 0 12px;
+      font-size:14px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:#ffffff;
+    }
+    .fx-brandRow{display:flex;gap:14px;align-items:center;}
+    .fx-logoWrap{
+      width:120px;height:100px;border-radius:20px;padding:10px;background:white;
+      box-shadow:0 18px 45px rgba(0,0,0,0.40),0 0 0 1px rgba(255,255,255,0.12) inset,0 0 26px rgba(27,102,255,0.35);
+      backdrop-filter: blur(8px);
+    }
+    .fx-logo{width:100%;height:100%;object-fit:contain;display:block;filter: drop-shadow(0 8px 16px rgba(0,0,0,.35));}
+    .fx-brandText h3{margin:0;font-size:20px;color:#fff;}
+    .fx-tag{margin:4px 0 0;color:rgba(234,242,255,.75);font-weight:700;font-size:12px;}
+    .fx-desc{margin:14px 0 0;color:rgba(234,242,255,.80);line-height:1.55;max-width:52ch;}
+    .fx-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+    .fx-badges span{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,0.14);background: rgba(255,255,255,0.06);font-weight:800;font-size:12px;color:#fff;
+    }
+    .fx-follow{margin-top:16px}
+    .fx-followTitle{font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:12px;color:rgba(255,255,255,.90);margin-bottom:10px;}
+    .fx-social{display:flex;gap:12px;flex-wrap:wrap}
+    .fx-ic{
+      width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+      color:#fff;font-size:18px;transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      box-shadow:0 10px 22px rgba(0,0,0,.25);
+    }
+    .fx-ic:hover{transform: translateY(-3px);box-shadow:0 18px 30px rgba(0,0,0,.35);filter:brightness(1.05);}
+    .fx-ic.fb{background:#1877F2}
+    .fx-ic.ig{background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)}
+    .fx-ic.wa{background:#25D366}
+    .fx-ic.sc{background:#FFFC00;color:#111}
+    .fx-ic.li{background:#0A66C2}
+
+    .fx-linkGrid{display:grid;gap:10px;}
+    .fx-linkGrid a{color:rgba(234,242,255,.86);font-weight:800;}
+    .fx-linkGrid a:hover{color:#fff;text-decoration:underline}
+
+    .fx-products{
+      margin-top:10px;border-radius:16px;border:1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);overflow:hidden;
+    }
+    .fx-products summary{
+      cursor:pointer;padding:12px 14px;list-style:none;display:flex;align-items:center;justify-content:space-between;
+      font-weight:900;color:#fff;
+    }
+    .fx-products summary::-webkit-details-marker{display:none}
+    .fx-products summary i{opacity:.9;transition:transform .18s ease;}
+    .fx-products[open] summary i{transform:rotate(180deg)}
+    .fx-prodList{display:grid;padding:8px 14px 14px;gap:10px;border-top:1px solid rgba(255,255,255,0.12);}
+    .fx-prodList a{color:rgba(234,242,255,.86);font-weight:800;}
+    .fx-prodList a:hover{color:#fff;text-decoration:underline}
+
+    .fx-miniLinks{display:flex;align-items:center;gap:10px;margin-top:16px;color:rgba(234,242,255,.72);font-weight:800;}
+    .fx-miniLinks a{color:rgba(234,242,255,.85)}
+    .fx-miniLinks a:hover{color:#fff;text-decoration:underline}
+
+    .fx-card{
+      display:flex;align-items:flex-start;gap:12px;padding:14px 14px;border-radius:16px;
+      border:1px solid rgba(255,255,255,0.14);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      box-shadow:0 14px 30px rgba(0,0,0,.22);
+      text-decoration:none;color:#fff;margin-bottom:12px;
+    }
+    .fx-card:hover{box-shadow:0 20px 40px rgba(0,0,0,.32);border-color: rgba(255,255,255,0.18);}
+    .fx-ci{
+      width:40px;height:40px;border-radius:14px;display:grid;place-items:center;
+      background: rgba(255,255,255,0.10);box-shadow:0 0 0 1px rgba(255,255,255,0.10) inset;flex:0 0 auto;
+    }
+    .fx-ci.phone i{color:#ff4d8d}
+    .fx-ci.email i{color:#9bd2ff}
+    .fx-ci.addr  i{color:#ff6b6b}
+    .fx-ci.hours i{color:#ffd166}
+
+    .fx-ctLabel{font-size:12px;color:rgba(234,242,255,.70);font-weight:900;letter-spacing:.08em;text-transform:uppercase;}
+    .fx-ctValue{margin-top:3px;font-weight:900;color:#fff;line-height:1.35;}
+    .fx-arrow{margin-left:auto;opacity:.75;transform:translateY(2px);}
+    .fx-card:hover .fx-arrow{opacity:1}
+    .fx-hours{cursor:default}
+    .fx-hours .fx-arrow{display:none}
+
+    .fx-ctaRow{display:grid;grid-template-columns: 1fr 1fr;gap:10px;margin-top:10px;}
+    .fx-btn{
+      display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:14px;
+      font-weight:900;border:1px solid rgba(255,255,255,0.16);text-decoration:none;
+      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .fx-btn:hover{transform:translateY(-2px);box-shadow:0 16px 28px rgba(0,0,0,.28)}
+    .fx-btnPrimary{background: linear-gradient(135deg, rgba(27,102,255,0.95), rgba(27,102,255,0.55));color:#fff;border-color: rgba(155,190,255,0.30);}
+    .fx-btnGhost{background: rgba(255,255,255,0.06);color:#fff;}
+
+    .fx-bottom{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,0.10);padding:14px 0;background: rgba(0,0,0,0.10);}
+    .fx-bottomInner{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:rgba(234,242,255,.82);font-weight:800;font-size:13px;}
+    .fx-made a{color:#fff;text-decoration:none;border-bottom:1px dashed rgba(255,255,255,0.35);}
+    .fx-made a:hover{border-bottom-color:#fff}
+    @media (max-width: 980px){
+      .fx-footer-inner{grid-template-columns:1fr;gap:22px;}
+      .fx-ctaRow{grid-template-columns:1fr}
+    }
+
+      
+
+    /* ================================
+   MOBILE DROPDOWN (PRODUCTS)
+================================ */
+/* Mobile active link */
+.mobile-menu a.active{
+  background: rgba(27,102,255,0.10);
+  border: 1px solid rgba(27,102,255,0.18);
+  color: var(--navy);
+  box-shadow: 0 10px 24px rgba(11,42,85,0.10);
+}
+
+/* Mobile active for dropdown button (Products) */
+.m-dropbtn.active{
+  background: rgba(27,102,255,0.10);
+  border-radius: 14px;
+}
+
+.m-dropdown{
+  display:block;
+}
+
+.m-dropbtn{
+  width:100%;
+  background:none;
+  border:0;
+  padding:12px 12px;
+  font-weight:900;
+  font-size:15px;
+  color:var(--navy);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  cursor:pointer;
+}
+
+.m-dropbtn i{
+  transition:transform .2s ease;
+}
+
+.m-dropmenu{
+  display:none;
+  padding-left:10px;
+}
+
+.m-dropmenu a{
+  padding:10px 12px;
+  font-weight:800;
+  font-size:14px;
+  color:#2b3e55;
+  border-radius:10px;
+  display:block;
+}
+
+.m-dropmenu a:hover{
+  background:rgba(27,102,255,.08);
+}
+
+/* open state */
+.m-dropdown.open .m-dropmenu{
+  display:block;
+}
+
+.m-dropdown.open .m-dropbtn i{
+  transform:rotate(180deg);
+}
+
+    body{ overflow-x:hidden; }
+    .container{ width:min(1200px, calc(100% - 28px)); }
+
+    @media (max-width: 980px){
+      .hero-wrap{grid-template-columns:1fr}
+      .kpis{grid-template-columns:1fr 1fr}
+      .info-strip{grid-template-columns:1fr}
+      .grid2{grid-template-columns:1fr}
+      .map{min-height:360px}
+      .hero-img{ min-height:360px; }
+      .trust{ justify-content:flex-start; }
+      /* show ticker under row on tablets */
+      .topbar-ticker{
+        display:block;
+        grid-column: 1 / -1;
+        order: 3;
+      }
+      .ticker-track{ animation-duration: 22s; }
+    }
+
+    /* Mobile nav behavior uses .open */
+    @media (max-width: 740px){
+      .navlinks{display:none}
+      .hamburger{display:block}
+
+      /* center logo + hide text */
+      .brand-text{ display:none; }
+      .header .nav{
+        display:grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items:center;
+      }
+      .brand{ grid-column:2; justify-self:center; margin:0; }
+      .hamburger{ grid-column:3; justify-self:end; }
+
+      .mobile-menu{ display:none; }
+      .mobile-menu.open{ display:block; }
+
+      .mobile-menu{
+        padding: 12px 14px 16px;
+        margin: 8px 0 14px;
+        border-top: 0;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: linear-gradient(180deg,#ffffff,#fbfdff);
+        box-shadow: 0 18px 45px rgba(11,42,85,0.10);
+      }
+      .mobile-menu a{
+        padding: 12px 12px;
+        border-radius: 14px;
+        font-size: 15px;
+        font-weight: 900;
+        color: var(--navy);
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+      }
+      .mobile-menu a:hover{ background: rgba(27,102,255,0.08); }
+      .mobile-menu .btn{ width:100%; margin-top:8px; border-radius:14px; }
+
+      .hero-title{font-size:32px}
+      .inner-grid2{grid-template-columns:1fr}
+      .quick-actions{grid-template-columns:1fr}
+    }
+
+    @media(max-width: 560px){
+      .topbar-wrap{
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+      .topbar-left{
+        justify-content: center;
+        flex-wrap: wrap;
+        white-space: normal;
+      }
+      .tb-dot{ display:none; }
+      .topbar-right{ justify-self: center; }
+      .top-social{ justify-content:center; gap:10px; }
+    }
+
+    @media (max-width: 980px){
+      .fx-footer-inner{ grid-template-columns:1fr; gap:22px; }
+      .fx-ctaRow{ grid-template-columns:1fr; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- TOP BAR (FULL WIDTH) -->
-<div class="topbar topbar-premium">
-  <div class="topbar-wrap">
+  <!-- TOP BAR -->
+  <div class="topbar topbar-premium">
+    <div class="topbar-wrap">
+      <!-- LEFT -->
+      <div class="topbar-left">
+        <span class="tb-chip">
+          <i class="fa-solid fa-phone"></i>
+          <a href="tel:+12176071382">217-607-1382</a>
+        </span>
 
-    <!-- LEFT -->
-    <div class="topbar-left">
-      <span class="tb-chip">
-        <i class="fa-solid fa-phone"></i>
-        <a href="tel:+12176071382">217-607-1382</a>
-      </span>
+        <span class="tb-dot"></span>
 
-      <span class="tb-dot"></span>
+        <span class="tb-chip">
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:Axenrich@gmail.com">Axenrich@gmail.com</a>
+        </span>
 
-      <span class="tb-chip">
-        <i class="fa-solid fa-envelope"></i>
-        <a href="mailto:Axenrich@gmail.com">Axenrich@gmail.com</a>
-      </span>
+        <span class="tb-dot"></span>
 
-      <span class="tb-dot"></span>
+        <span class="tb-chip">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Urbana, IL</span>
+        </span>
+      </div>
 
-      <span class="tb-chip">
-        <i class="fa-solid fa-location-dot"></i>
-        <span>Urbana, IL</span>
-      </span>
-    </div>
+      <!-- CENTER -->
+      <div class="topbar-ticker" aria-label="Highlights">
+        <div class="ticker-fade left"></div>
 
-    <!-- CENTER -->
-    <div class="topbar-ticker" aria-label="Highlights">
-      <div class="ticker-fade left"></div>
+        <div class="ticker-window">
+          <div class="ticker-track" id="topTicker">
+            <span><i class="fa-solid fa-circle-check"></i> Term Life — Affordable Family Protection</span>
+            <span><i class="fa-solid fa-circle-check"></i> IUL — Lifetime Coverage + Cash Value Potential</span>
+            <span><i class="fa-solid fa-circle-check"></i> Whole Life — Guaranteed Protection</span>
+            <span><i class="fa-solid fa-circle-check"></i> Final Expense — Peace of Mind Coverage</span>
+            <span><i class="fa-solid fa-circle-check"></i> Retirement & Annuities Planning</span>
+            <span><i class="fa-solid fa-circle-check"></i> Debt Solutions & Financial Planning</span>
 
-      <div class="ticker-window">
-        <div class="ticker-track" id="topTicker">
-          <span><i class="fa-solid fa-circle-check"></i> Term Life — Affordable Family Protection</span>
-          <span><i class="fa-solid fa-circle-check"></i> IUL — Lifetime Coverage + Cash Value Potential</span>
-          <span><i class="fa-solid fa-circle-check"></i> Whole Life — Guaranteed Protection</span>
-          <span><i class="fa-solid fa-circle-check"></i> Final Expense — Peace of Mind Coverage</span>
-          <span><i class="fa-solid fa-circle-check"></i> Retirement & Annuities Planning</span>
-          <span><i class="fa-solid fa-circle-check"></i> Debt Solutions & Financial Planning</span>
+            <!-- duplicate for seamless loop -->
+            <span><i class="fa-solid fa-circle-check"></i> Term Life — Affordable Family Protection</span>
+            <span><i class="fa-solid fa-circle-check"></i> IUL — Lifetime Coverage + Cash Value Potential</span>
+            <span><i class="fa-solid fa-circle-check"></i> Whole Life — Guaranteed Protection</span>
+            <span><i class="fa-solid fa-circle-check"></i> Final Expense — Peace of Mind Coverage</span>
+            <span><i class="fa-solid fa-circle-check"></i> Retirement & Annuities Planning</span>
+            <span><i class="fa-solid fa-circle-check"></i> Debt Solutions & Financial Planning</span>
+          </div>
+        </div>
 
-          <!-- duplicate for seamless loop -->
-          <span><i class="fa-solid fa-circle-check"></i> Term Life — Affordable Family Protection</span>
-          <span><i class="fa-solid fa-circle-check"></i> IUL — Lifetime Coverage + Cash Value Potential</span>
-          <span><i class="fa-solid fa-circle-check"></i> Whole Life — Guaranteed Protection</span>
-          <span><i class="fa-solid fa-circle-check"></i> Final Expense — Peace of Mind Coverage</span>
-          <span><i class="fa-solid fa-circle-check"></i> Retirement & Annuities Planning</span>
-          <span><i class="fa-solid fa-circle-check"></i> Debt Solutions & Financial Planning</span>
+        <div class="ticker-fade right"></div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="topbar-right">
+        <div class="top-social">
+          <a href="#" class="sicon fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="sicon ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="sicon wa" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="sicon sc" aria-label="Snapchat"><i class="fa-brands fa-snapchat-ghost"></i></a>
+          <a href="#" class="sicon li" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
       </div>
-
-      <div class="ticker-fade right"></div>
     </div>
-
-    <!-- RIGHT -->
-    <div class="topbar-right">
-      <div class="top-social">
-        <a href="#" class="sicon fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" class="sicon ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" class="sicon wa" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="#" class="sicon sc" aria-label="Snapchat"><i class="fa-brands fa-snapchat-ghost"></i></a>
-        <a href="#" class="sicon li" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-      </div>
-    </div>
-
   </div>
-</div>
 
-
-  <!-- NAV (KEEP) -->
+  <!-- NAV -->
   <header class="header" id="header">
     <div class="container nav">
- 
-<a class="brand" href="index.html">
-  <div class="logo-wrap">
-    <img src="assets/img/logo.png" alt="Axenrich Financial Services" class="logo-img">
-  </div>
-
-  <div class="brand-text">
-    <strong>Axenrich Financial Services</strong>
-    <span>Protection • Growth • Confidence</span>
-  </div>
-</a>
-
+      <a class="brand" href="index.html">
+        <div class="logo-wrap">
+          <img src="assets/img/logo.png" alt="Axenrich Financial Services" class="logo-img">
+        </div>
+        <div class="brand-text">
+          <strong>Axenrich Financial Services</strong>
+          <span>Protection • Growth • Confidence</span>
+        </div>
+      </a>
 
       <nav class="navlinks" id="navlinks">
-        <a  href="index.html">Home</a>
+        <a href="index.html">Home</a>
 
         <div class="nav-dropdown">
           <button class="nav-dropbtn" type="button">Products ▾</button>
@@ -1068,9 +910,9 @@
         <a href="#planning">Planning</a>
         <a href="#opportunity">Opportunity</a>
         <a href="join-team.html">Join a Team</a>
-        <a href="contact.html">Contact</a>
+        <a   href="contact.html">Contact</a>
 
-            <a class="get" href="#quote"><i class="fa-solid fa-bolt"></i>&nbsp; Get Free Quote</a>
+        <a class="get" href="index.html#quote"><i class="fa-solid fa-bolt"></i> Get Free Quote</a>
       </nav>
 
       <button class="hamburger" id="hamburger" aria-label="Open menu">
@@ -1078,18 +920,34 @@
       </button>
     </div>
 
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Home</a>
-      <a href="#products">Products</a>
-      <a href="life-calculator.html">Life Calculator</a>
-      <a href="#planning">Planning</a>
-      <a href="#opportunity">Opportunity</a>
-      <a href="join-team.html">Join a Team</a>
-      <a href="contact.html">Contact</a>
-            <a class="btn btn-primary" href="#quote"><i class="fa-solid fa-bolt"></i>&nbsp; Get Free Quote</a>
+    <div class="container">
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+       <div class="m-dropdown">
+  <button class="m-dropbtn" id="mProductsBtn">
+    Products <i class="fa-solid fa-chevron-down"></i>
+  </button>
+
+  <div class="m-dropmenu" id="mProductsMenu">
+    <a href="term-life.html">Term Life</a>
+    <a href="iul.html">IUL</a>
+    <a href="whole-life.html">Whole Life</a>
+    <a href="final-expense.html">Final Expense</a>
+  </div>
+</div>
+
+        <a class="active" href="life-calculator.html">Life Calculator</a>
+        <a href="#planning">Planning</a>
+        <a href="#opportunity">Opportunity</a>
+        <a href="join-team.html">Join a Team</a>
+        <a href="contact.html">Contact</a>
+        <a class="btn btn-primary" href="index.html#quote"><i class="fa-solid fa-bolt"></i> Get Free Quote</a>
+      </div>
     </div>
   </header>
 
+
+  <!-- PAGE HEAD -->
   <section class="page-head">
     <div class="container">
       <div class="title">
@@ -1106,11 +964,11 @@
             <button class="btn btn-green" type="button" id="btnPDF">DOWNLOAD PDF</button>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
+  <!-- CONTENT -->
   <section class="wrap">
     <div class="container">
       <div class="layout">
@@ -1242,9 +1100,7 @@
                 Matching PAC logic: <strong>(Income + MonthlyExpenses×12) × Factor × Years × (Pct/100)</strong>
               </div>
 
-              <!-- Factor to match your PAC example -->
               <input type="hidden" id="pacFactor" value="1.0888889">
-
             </div>
           </div>
         </div>
@@ -1264,257 +1120,275 @@
       </div>
     </div>
   </section>
-<!-- ================= MODERN FOOTER ================= -->
- <!-- Font Awesome (for social icons) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-<!-- ✅ PREMIUM FOOTER v2 (Axenrich Financial Services) -->
-<footer class="fx-footer" id="site-footer">
-  <!-- top glow + wave -->
-  <div class="fx-wave" aria-hidden="true"></div>
+  <!-- FOOTER -->
+  <footer class="fx-footer" id="site-footer">
+    <div class="fx-wave" aria-hidden="true"></div>
 
-  <div class="container fx-footer-inner">
-    <!-- LEFT: BRAND -->
-    <div class="fx-col fx-brand">
-      <div class="fx-brandRow">
-        <div class="fx-logoWrap">
-          <!-- use your logo path -->
-          <img src="assets/img/logo.png" alt="Axenrich Financial Services" class="fx-logo">
+    <div class="container fx-footer-inner">
+      <!-- LEFT -->
+      <div class="fx-col fx-brand">
+        <div class="fx-brandRow">
+          <div class="fx-logoWrap">
+            <img src="assets/img/logo.png" alt="Axenrich Financial Services" class="fx-logo">
+          </div>
+          <div class="fx-brandText">
+            <h3>Axenrich Financial Services</h3>
+            <p class="fx-tag">Protection • Growth • Confidence</p>
+          </div>
         </div>
-        <div class="fx-brandText">
-          <h3>Axenrich Financial Services</h3>
-          <p class="fx-tag">Protection • Growth • Confidence</p>
+
+        <p class="fx-desc">
+          Helping families and businesses with life insurance, protection, and financial planning.
+          Clear guidance, simple steps, and support you can trust.
+        </p>
+
+        <div class="fx-badges">
+          <span><i class="fa-solid fa-bolt"></i> Fast Response</span>
+          <span><i class="fa-solid fa-shield-heart"></i> Trusted Guidance</span>
+          <span><i class="fa-solid fa-location-dot"></i> Illinois Office</span>
         </div>
-      </div>
 
-      <p class="fx-desc">
-        Helping families and businesses with life insurance, protection, and financial planning.
-        Clear guidance, simple steps, and support you can trust.
-      </p>
-
-      <div class="fx-badges">
-        <span><i class="fa-solid fa-bolt"></i> Fast Response</span>
-        <span><i class="fa-solid fa-shield-heart"></i> Trusted Guidance</span>
-        <span><i class="fa-solid fa-location-dot"></i> Illinois Office</span>
-      </div>
-
-      <div class="fx-follow">
-        <div class="fx-followTitle">Follow</div>
-        <div class="fx-social">
-          <a class="fx-ic fb" href="#" aria-label="Facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a class="fx-ic ig" href="#" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a class="fx-ic wa" href="#" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-          <a class="fx-ic sc" href="#" aria-label="Snapchat" title="Snapchat"><i class="fa-brands fa-snapchat-ghost"></i></a>
-          <a class="fx-ic li" href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- MIDDLE: LINKS -->
-    <div class="fx-col fx-links">
-      <h4 class="fx-h">Quick Links</h4>
-      <div class="fx-linkGrid">
-        <a href="index.html">Home</a>
-        <a href="life-calculator.html">Life Calculator</a>
-        <a href="join-team.html">Join Team</a>
-        <a href="contact.html">Contact</a>
-      </div>
-
-      <h4 class="fx-h" style="margin-top:18px;">Products</h4>
-
-      <!-- dropdown-like list (no JS needed) -->
-      <details class="fx-products">
-        <summary>
-          Browse Products
-          <i class="fa-solid fa-chevron-down"></i>
-        </summary>
-        <div class="fx-prodList">
-          <a href="term-life.html">Term Life</a>
-          <a href="iul.html">IUL</a>
-          <a href="whole-life.html">Whole Life</a>
-          <a href="final-expense.html">Final Expense</a>
-        </div>
-      </details>
-
-      <div class="fx-miniLinks">
-        <a href="privacy.html">Privacy</a>
-        <span>•</span>
-        <a href="terms.html">Terms</a>
-        <span>•</span>
-        <a href="disclaimer.html">Disclaimer</a>
-      </div>
-    </div>
-
-    <!-- RIGHT: CONTACT -->
-    <div class="fx-col fx-contact">
-      <h4 class="fx-h">Contact</h4>
-
-      <a class="fx-card" href="tel:+12176071382">
-        <div class="fx-ci phone"><i class="fa-solid fa-phone"></i></div>
-        <div class="fx-ct">
-          <div class="fx-ctLabel">Phone</div>
-          <div class="fx-ctValue">217-607-1382</div>
-        </div>
-        <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-      </a>
-
-      <a class="fx-card" href="mailto:Axenrich@gmail.com">
-        <div class="fx-ci email"><i class="fa-solid fa-envelope"></i></div>
-        <div class="fx-ct">
-          <div class="fx-ctLabel">Email</div>
-          <div class="fx-ctValue">Axenrich@gmail.com</div>
-        </div>
-        <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-      </a>
-
-      <a class="fx-card" target="_blank" rel="noopener"
-         href="https://www.google.com/maps?q=2860%20South%20Philo%20RD%20Urbana%20IL%2061802">
-        <div class="fx-ci addr"><i class="fa-solid fa-location-dot"></i></div>
-        <div class="fx-ct">
-          <div class="fx-ctLabel">Office</div>
-          <div class="fx-ctValue">2860 South Philo Rd<br>Urbana, IL 61802</div>
-        </div>
-        <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-      </a>
-
-      <div class="fx-card fx-hours">
-        <div class="fx-ci hours"><i class="fa-solid fa-clock"></i></div>
-        <div class="fx-ct">
-          <div class="fx-ctLabel">Hours</div>
-          <div class="fx-ctValue">
-            Mon–Fri: 8:00 AM – 5:00 PM<br>
-            Weekends: By appointment only
+        <div class="fx-follow">
+          <div class="fx-followTitle">Follow</div>
+          <div class="fx-social">
+            <a class="fx-ic fb" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="fx-ic ig" href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a class="fx-ic wa" href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a class="fx-ic sc" href="#" aria-label="Snapchat"><i class="fa-brands fa-snapchat-ghost"></i></a>
+            <a class="fx-ic li" href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
           </div>
         </div>
       </div>
 
-      <div class="fx-ctaRow">
-        <a class="fx-btn fx-btnPrimary" href="contact.html#message">
-          <i class="fa-solid fa-paper-plane"></i> Send Message
+      <!-- MIDDLE -->
+      <div class="fx-col fx-links">
+        <h4 class="fx-h">Quick Links</h4>
+        <div class="fx-linkGrid">
+          <a href="index.html">Home</a>
+          <a href="life-calculator.html">Life Calculator</a>
+          <a href="join-team.html">Join Team</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <h4 class="fx-h" style="margin-top:18px;">Products</h4>
+        <details class="fx-products">
+          <summary>
+            Browse Products
+            <i class="fa-solid fa-chevron-down"></i>
+          </summary>
+          <div class="fx-prodList">
+            <a href="term-life.html">Term Life</a>
+            <a href="iul.html">IUL</a>
+            <a href="whole-life.html">Whole Life</a>
+            <a href="final-expense.html">Final Expense</a>
+          </div>
+        </details>
+
+        <div class="fx-miniLinks">
+          <a href="privacy.html">Privacy</a><span>•</span>
+          <a href="terms.html">Terms</a><span>•</span>
+          <a href="disclaimer.html">Disclaimer</a>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="fx-col fx-contact">
+        <h4 class="fx-h">Contact</h4>
+
+        <a class="fx-card" href="tel:+12176071382">
+          <div class="fx-ci phone"><i class="fa-solid fa-phone"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Phone</div>
+            <div class="fx-ctValue">217-607-1382</div>
+          </div>
+          <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </a>
-        <a class="fx-btn fx-btnGhost" href="index.html#quote">
-          <i class="fa-solid fa-bolt"></i> Get Free Quote
+
+        <a class="fx-card" href="mailto:Axenrich@gmail.com">
+          <div class="fx-ci email"><i class="fa-solid fa-envelope"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Email</div>
+            <div class="fx-ctValue">Axenrich@gmail.com</div>
+          </div>
+          <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </a>
+
+        <a class="fx-card" target="_blank" rel="noopener"
+           href="https://www.google.com/maps?q=2860%20South%20Philo%20RD%20Urbana%20IL%2061802">
+          <div class="fx-ci addr"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Office</div>
+            <div class="fx-ctValue">2860 South Philo Rd<br>Urbana, IL 61802</div>
+          </div>
+          <div class="fx-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </a>
+
+        <div class="fx-card fx-hours">
+          <div class="fx-ci hours"><i class="fa-solid fa-clock"></i></div>
+          <div class="fx-ct">
+            <div class="fx-ctLabel">Hours</div>
+            <div class="fx-ctValue">
+              Mon–Fri: 8:00 AM – 5:00 PM<br>
+              Weekends: By appointment only
+            </div>
+          </div>
+        </div>
+
+        <div class="fx-ctaRow">
+          <a class="fx-btn fx-btnPrimary" href="contact.html#message">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </a>
+          <a class="fx-btn fx-btnGhost" href="index.html#quote">
+            <i class="fa-solid fa-bolt"></i> Get Free Quote
+          </a>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- bottom bar -->
-  <div class="fx-bottom">
-    <div class="container fx-bottomInner">
-      <div>© <span id="fxYear"></span> Axenrich Financial Services. All rights reserved.</div>
-      <div class="fx-made">
-        Website made by <a href="#" target="_blank" rel="noopener">Modern Code Hub</a>
+    <div class="fx-bottom">
+      <div class="container fx-bottomInner">
+        <div>© <span id="fxYear"></span> Axenrich Financial Services. All rights reserved.</div>
+        <div class="fx-made">Website made by <a href="#" target="_blank" rel="noopener">Modern Code Hub</a></div>
       </div>
     </div>
-  </div>
-</footer>
-<script>
-  const $ = (id) => document.getElementById(id);
+  </footer>
 
-  function onlyDigits(s){
-    return String(s ?? "").replace(/[^\d]/g, "");
-  }
+  <!-- =========================
+    JS (calculator + menu + mobile products dropdown)
+  ========================== -->
+  <script>
+    // footer year
+    document.getElementById("fxYear").textContent = new Date().getFullYear();
 
-  function formatCommas(numStr){
-    if(!numStr) return "";
-    // remove leading zeros (keep single 0)
-    numStr = numStr.replace(/^0+(?=\d)/, "");
-    return numStr.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+    const $ = (id) => document.getElementById(id);
 
-  function toNumber(val){
-    const n = String(val ?? "").replace(/,/g, "").replace(/[^\d.-]/g, "");
-    return n === "" ? 0 : Number(n);
-  }
-
-  function money(n){
-    const x = Number(n || 0);
-    return x.toLocaleString(undefined, {style:'currency', currency:'USD', maximumFractionDigits:0});
-  }
-
-  // ✅ Live comma formatting for all .money inputs
-  function attachCommaFormatting(input){
-    input.addEventListener("input", () => {
-      const raw = onlyDigits(input.value);
-      const formatted = formatCommas(raw);
-
-      // keep cursor near end naturally
-      const oldLen = input.value.length;
-      const newLen = formatted.length;
-      const diff = newLen - oldLen;
-
-      input.value = formatted;
-
-      // try keep caret position stable
-      const pos = (input.selectionStart || 0) + diff;
-      input.setSelectionRange(pos, pos);
-    });
-
-    // optional: if user leaves field empty, keep empty
-    input.addEventListener("blur", () => {
-      if(input.value.trim() === "") input.value = "";
-    });
-  }
-
-  document.querySelectorAll(".money").forEach(attachCommaFormatting);
-
-  function calc(){
-    const monthly = toNumber($("monthlyExpenses").value);
-    const income  = toNumber($("income").value);
-
-    const pct   = Math.min(100, Math.max(0, toNumber($("replacePct").value || 0)));
-    const years = Math.max(0, toNumber($("replaceYears").value || 0));
-    const factor = Math.max(0, toNumber($("pacFactor").value) || 1);
-
-    const baseAnnual = income + (monthly * 12);
-
-    let incomeReplacement = 0;
-    if($("incomeReplacementOn").checked){
-      incomeReplacement = baseAnnual * factor * years * (pct / 100);
+    function onlyDigits(s){ return String(s ?? "").replace(/[^\d]/g, ""); }
+    function formatCommas(numStr){
+      if(!numStr) return "";
+      numStr = numStr.replace(/^0+(?=\d)/, "");
+      return numStr.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    function toNumber(val){
+      const n = String(val ?? "").replace(/,/g, "").replace(/[^\d.-]/g, "");
+      return n === "" ? 0 : Number(n);
+    }
+    function money(n){
+      const x = Number(n || 0);
+      return x.toLocaleString(undefined, {style:'currency', currency:'USD', maximumFractionDigits:0});
     }
 
-    $("incomeReplaceTotal").textContent = money(incomeReplacement);
-  }
+    // Live comma formatting for all .money inputs
+    function attachCommaFormatting(input){
+      input.addEventListener("input", () => {
+        const raw = onlyDigits(input.value);
+        const formatted = formatCommas(raw);
 
-  function resetAll(){
-    $("firstName").value = "";
-    $("lastName").value = "";
-    $("phone").value = "";
-    $("phoneType").value = "Cell";
-    $("age").value = "";
-    $("lifeExp").value = "";
+        const oldLen = input.value.length;
+        const newLen = formatted.length;
+        const diff = newLen - oldLen;
 
-    $("liability").value = "";
-    $("monthlyExpenses").value = "";
-    $("income").value = "";
-    $("incomeReplacementOn").checked = false;
-    $("replacePct").value = "";
-    $("replaceYears").value = "";
-    $("funeral").value = "";
-    $("education").value = "";
+        input.value = formatted;
 
-    $("notes").value = "";
-    $("incomeReplaceTotal").textContent = "$0";
-  }
+        const pos = (input.selectionStart || 0) + diff;
+        try{ input.setSelectionRange(pos, pos); }catch(e){}
+      });
 
-  $("btnCalc").addEventListener("click", calc);
-  $("btnCalcTop").addEventListener("click", calc);
-  $("btnCalcMain").addEventListener("click", calc);
+      input.addEventListener("blur", () => {
+        if(input.value.trim() === "") input.value = "";
+      });
+    }
+    document.querySelectorAll(".money").forEach(attachCommaFormatting);
 
-  $("btnReset").addEventListener("click", ()=>{
-    if(confirm("Clear all fields?")) resetAll();
-  });
+    function calc(){
+      const monthly = toNumber($("monthlyExpenses").value);
+      const income  = toNumber($("income").value);
 
-  $("btnPrint").addEventListener("click", ()=> window.print());
-  $("btnPDF").addEventListener("click", ()=> window.print());
+      const pct   = Math.min(100, Math.max(0, toNumber($("replacePct").value || 0)));
+      const years = Math.max(0, toNumber($("replaceYears").value || 0));
+      const factor = Math.max(0, toNumber($("pacFactor").value) || 1);
 
-  $("phoneAdd").addEventListener("click", ()=> alert("Phone added (demo)."));
+      const baseAnnual = income + (monthly * 12);
 
-  // start empty
-  resetAll();
-</script>
+      let incomeReplacement = 0;
+      if($("incomeReplacementOn").checked){
+        incomeReplacement = baseAnnual * factor * years * (pct / 100);
+      }
 
+      $("incomeReplaceTotal").textContent = money(incomeReplacement);
+    }
+
+    function resetAll(){
+      $("firstName").value = "";
+      $("lastName").value = "";
+      $("phone").value = "";
+      $("phoneType").value = "Cell";
+      $("age").value = "";
+      $("lifeExp").value = "";
+
+      $("liability").value = "";
+      $("monthlyExpenses").value = "";
+      $("income").value = "";
+      $("incomeReplacementOn").checked = false;
+      $("replacePct").value = "";
+      $("replaceYears").value = "";
+      $("funeral").value = "";
+      $("education").value = "";
+
+      $("notes").value = "";
+      $("incomeReplaceTotal").textContent = "$0";
+    }
+
+    $("btnCalc").addEventListener("click", calc);
+    $("btnCalcTop").addEventListener("click", calc);
+    $("btnCalcMain").addEventListener("click", calc);
+
+    $("btnReset").addEventListener("click", ()=>{
+      if(confirm("Clear all fields?")) resetAll();
+    });
+
+    $("btnPrint").addEventListener("click", ()=> window.print());
+    $("btnPDF").addEventListener("click", ()=> window.print());
+
+    $("phoneAdd").addEventListener("click", ()=> alert("Phone added (demo)."));
+
+    // start empty
+    resetAll();
+
+    // Mobile menu toggle (with hamburger animation) + close dropdown
+    (() => {
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      if (!hamburger || !mobileMenu) return;
+
+      hamburger.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+        hamburger.classList.toggle("is-open");
+      });
+
+      mobileMenu.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => {
+          mobileMenu.classList.remove("open");
+          hamburger.classList.remove("is-open");
+
+          const dd = document.querySelector(".m-dropdown");
+          if(dd) dd.classList.remove("open");
+        });
+      });
+    })();
+
+    // Mobile Products dropdown (toggle)
+    (() => {
+      const btn = document.getElementById("mProductsBtn");
+      const menuWrap = btn ? btn.closest(".m-dropdown") : null;
+      if(!btn || !menuWrap) return;
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        menuWrap.classList.toggle("open");
+      });
+    })();
+  </script>
 
 </body>
 </html>
